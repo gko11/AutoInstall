@@ -35,7 +35,7 @@ check_component() {
                     fi
 
 	    else
-    		REINSTALL_VSFTPD=true
+    		echo "2"
             fi
             ;;
         "subscription")
