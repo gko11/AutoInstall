@@ -17,7 +17,7 @@ select_language() {
             echo -e "${BLUE}1) English${RESET}"
             echo -e "${BLUE}2) Русский${RESET}"
             echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
-            read -p "$(echo -e "${BOLD_CYAN}Enter your choice (1-2) / Введите ваш выбор (1-2):${RESET}") " lang_choice
+`            read -p "$(echo -e "${BOLD_CYAN}Enter your choice (1-2) / Введите ваш выбор (1-2):${RESET}") " lang_choice
 
             case $lang_choice in
                 1)
