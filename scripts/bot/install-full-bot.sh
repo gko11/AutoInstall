@@ -11,11 +11,11 @@ REINSTALL_CADDY=false
 check_component() {
     local component=$1
     local path=$2
-    local file=$3
+    local env_file=$3
 
     case $component in
         "vsftpd")
-             if command -v vsftpd &> /dev/null then
+             if command -v vsftpd &> /dev/null; then
     		echo "1"
 	    else
     		echo "2"
@@ -282,7 +282,7 @@ show_panel_info() {
 }
 
 main() {
-    check_component "panel" "/opt/remnawave" "/etc/vsftpd.conf"
+    check_component "panel" "/opt/remnawave" "/opt/remnawave/.env"
     check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
     check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
 
