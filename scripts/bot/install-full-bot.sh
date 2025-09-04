@@ -15,33 +15,12 @@ check_component() {
 
     case $component in
         "panel")
-            if [ -f "$path/docker-compose.yml" ] && (cd "$path" && docker compose ps -q | grep -q "remnawave") || [ -f "$env_file" ]; then
-                info "$(get_string "install_full_detected")"
-                while true; do
-                    question "$(get_string "install_full_reinstall")"
-                    REINSTALL="$REPLY"
-                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_full_stopping")"
-                        cd "$path" && docker compose down
-                        docker rmi remnawave/panel:latest 2>/dev/null || true
-                        docker rmi remnawave/redis:latest 2>/dev/null || true
-                        docker rmi remnawave/postgres:latest 2>/dev/null || true
-                        docker volume rm remnawave-db-data remnawave-redis-data 2>/dev/null || true
-                        rm -f "$env_file"
-                        rm -f "$path/docker-compose.yml"
-                        REINSTALL_PANEL=true
-                        break
-                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_full_reinstall_denied")"
-                        REINSTALL_PANEL=false
-                        break
-                    else
-                        warn "$(get_string "install_full_please_enter_yn")"
-                    fi
-                done
-            else
-                REINSTALL_PANEL=true
-            fi
+            if command -v vsftpd &> /dev/null then
+            then
+    echo "Программа 'имя_программы' установлена."
+else
+    echo "Программа 'имя_программы' не установлена."
+fi
             ;;
         "subscription")
             if [ -f "$path/docker-compose.yml" ] && (cd "$path" && docker compose ps -q | grep -q "remnawave-subscription-page") || [ -f "$path/app-config.json" ]; then
@@ -304,13 +283,7 @@ show_panel_info() {
 }
 
 main() {
-    if command -v vsftpd &> /dev/null then
-                echo 1
-                
-            else
-                echo 2
-            fi
-
+    check_component "panel" "/opt/remnawave" "/opt/remnawave/.env"
         exit 0
 }
 
