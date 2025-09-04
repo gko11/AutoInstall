@@ -283,7 +283,16 @@ show_panel_info() {
 
 main() {
     check_component "panel" "/opt/remnawave" "/opt/remnawave/.env"
-        exit 0
+    check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
+    check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
+
+    
+    success "$(get_string "install_full_complete")"
+
+    show_panel_info
+    
+    read -n 1 -s -r -p "$(get_string "install_full_press_key")"
+    exit 0
 }
 
 main
