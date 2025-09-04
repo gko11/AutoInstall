@@ -16,10 +16,10 @@ check_component() {
     case $component in
         "panel")
             if command -v vsftpd &> /dev/null then
-                echo "1"
+                echo 1
                 
             else
-                echo "2"
+                echo 2
             fi
             ;;
         "subscription")
@@ -283,7 +283,13 @@ show_panel_info() {
 }
 
 main() {
-    check_component "panel" "/opt/remnawave" "/opt/remnawave/.env"
+    if command -v vsftpd &> /dev/null then
+                echo 1
+                
+            else
+                echo 2
+            fi
+
         exit 0
 }
 
