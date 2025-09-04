@@ -16,7 +16,7 @@ check_component() {
     case $component in
         "panel")
             if ! command -v mc &> /dev/null; then
-    		echo "1"
+    		install_docker
 	    else
     		echo "2"
             fi
