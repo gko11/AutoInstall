@@ -15,7 +15,7 @@ check_component() {
 
     case $component in
         "vsftpd")
-             if command -v vsftpd &> /dev/null; || [ -f "$file" ] then
+             if command -v vsftpd &> /dev/null && [ -f "$file" ] then
     		echo "1"
 	    else
     		echo "2"
