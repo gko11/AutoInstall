@@ -1,10 +1,10 @@
 #!/bin/bash
 
-SCRIPT_DIR="/opt/autionstall"
+SCRIPT_DIR="/opt/autoinstall"
 
-. /opt/autionstall/scripts/common/colors.sh
-. /opt/autionstall/scripts/common/functions.sh
-. /opt/autionstall/scripts/common/languages.sh
+. /opt/autoinstall/scripts/common/colors.sh
+. /opt/autoinstall/scripts/common/functions.sh
+. /opt/autoinstall/scripts/common/languages.sh
 
 menu() {
     echo -e "${BOLD_MAGENTA}$1${RESET}"
