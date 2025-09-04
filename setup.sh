@@ -34,7 +34,7 @@ cd "$TEMP_DIR" || exit 1
 
 echo "Downloading AutoInstall..."
 echo "Загрузка AutoInstall..."
-curl -L https://github.com/Capybara-z/RemnaSetup/archive/refs/heads/main.zip -o remnasetup.zip
+curl -L https://github.com/gko11/AutoInstall/archive/refs/heads/main.zip -o autoinstall.zip
 
 if [ ! -f autoinstall.zip ]; then
     echo "Error: Failed to download archive"
@@ -64,7 +64,7 @@ fi
 
 echo "Extracting files..."
 echo "Распаковка файлов..."
-unzip -q remnasetup.zip
+unzip -q autoinstall.zip
 
 if [ ! -d "AutoInstall-main" ]; then
     echo "Error: Failed to extract archive"
@@ -73,7 +73,7 @@ if [ ! -d "AutoInstall-main" ]; then
     exit 1
 fi
 
-mkdir -p /opt/remnasetup
+mkdir -p /opt/autoinstall
 
 echo "Installing AutoInstall to /opt/autoinstall..."
 echo "Установка AutoInstall в /opt/autoinstall..."
