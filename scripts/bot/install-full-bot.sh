@@ -4,7 +4,7 @@ source "/opt/autoinstall/scripts/common/colors.sh"
 source "/opt/autoinstall/scripts/common/functions.sh"
 source "/opt/autoinstall/scripts/common/languages.sh"
 
-REINSTALL_PANEL=false
+REINSTALL_VSFTPD=false
 REINSTALL_SUBSCRIPTION=false
 REINSTALL_CADDY=false
 
@@ -15,10 +15,24 @@ check_component() {
 
     case $component in
         "vsftpd")
-            if command -v vsftpd >/dev/null 2>&1 || ! [ -f "$file" ]; then
-    		echo "1"
-	    else
-    		echo "2"
+            if command -v vsftpd >/dev/null 2>&1 && [ -f "$file" ]; then
+    		info "$(get_string "install_bot_detected")"
+		while true; do
+                    question "$(get_string "install_bot_reinstall")"
+                    REINSTALL="$REPLY"
+                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
+                        warn "$(get_string "install_bot_stopping")"
+                        sudo apt purge vsftpd
+                        rm -f "$file"
+                        REINSTALL_VSFTPD=true
+                        break
+                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
+                        info "$(get_string "install_full_reinstall_denied")"
+                        REINSTALL_VSFTPD=false
+                        break
+                    else
+                        warn "$(get_string "install_full_please_enter_yn")"
+                    fi
             fi
             ;;
         "subscription")
@@ -106,7 +120,7 @@ generate_login() {
 
 
 install_without_protection() {
-    if [ "$REINSTALL_PANEL" = true ]; then
+    if [ "$REINSTALL_VSFTPD" = true ]; then
         info "$(get_string "install_full_installing")"
         mkdir -p /opt/remnawave
         cd /opt/remnawave
@@ -175,7 +189,7 @@ install_without_protection() {
 }
 
 install_with_protection() {
-    if [ "$REINSTALL_PANEL" = true ]; then
+    if [ "$REINSTALL_VSFTPD" = true ]; then
         info "$(get_string "install_full_installing_with_protection")"
         mkdir -p /opt/remnawave
         cd /opt/remnawave
@@ -282,7 +296,7 @@ show_panel_info() {
 }
 
 main() {
-    check_component "vsftpd" "/opt/remnawave" "/etc/vsftpd.conf"
+    check_component "vsftpd" "" "/etc/vsftpd.conf"
     check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
     check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
 
