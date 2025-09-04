@@ -4,7 +4,7 @@ source "/opt/autoinstall/scripts/common/colors.sh"
 source "/opt/autoinstall/scripts/common/functions.sh"
 source "/opt/autoinstall/scripts/common/languages.sh"
 
-REINSTALL_VSFTPD=false
+REINSTALL_PANEL=false
 REINSTALL_SUBSCRIPTION=false
 REINSTALL_CADDY=false
 
@@ -23,12 +23,13 @@ check_component() {
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping")"
                         sudo apt purge vsftpd
+
                         rm -f "$file"
-                        REINSTALL_VSFTPD=true
+                        REINSTALL_PANEL=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_full_reinstall_denied")"
-                        REINSTALL_VSFTPD=false
+                        REINSTALL_PANEL=false
                         break
                     else
                         warn "$(get_string "install_full_please_enter_yn")"
@@ -123,7 +124,7 @@ generate_login() {
 
 
 install_without_protection() {
-    if [ "$REINSTALL_VSFTPD" = true ]; then
+    if [ "$REINSTALL_PANEL" = true ]; then
         info "$(get_string "install_full_installing")"
         mkdir -p /opt/remnawave
         cd /opt/remnawave
@@ -192,7 +193,7 @@ install_without_protection() {
 }
 
 install_with_protection() {
-    if [ "$REINSTALL_VSFTPD" = true ]; then
+    if [ "$REINSTALL_PANEL" = true ]; then
         info "$(get_string "install_full_installing_with_protection")"
         mkdir -p /opt/remnawave
         cd /opt/remnawave
