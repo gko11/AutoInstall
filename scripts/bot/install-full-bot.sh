@@ -15,7 +15,7 @@ check_component() {
 
     case $component in
         "vsftpd")
-            if command -v vsftpd >/dev/null 2>&1 && apt update; then
+            if command -v vsftpd >/dev/null 2>&1 || command -v mc >/dev/null 2>&1; then
     		echo "1"
 	    else
     		echo "2"
