@@ -15,13 +15,7 @@ check_component() {
 
     case $component in
         "panel")
-            if command -v vsftpd &> /dev/null then
-                echo 1
-                
-            else
-                echo 2
-            fi
-            ;;
+            
         "subscription")
             if [ -f "$path/docker-compose.yml" ] && (cd "$path" && docker compose ps -q | grep -q "remnawave-subscription-page") || [ -f "$path/app-config.json" ]; then
                 info "$(get_string "install_full_subscription_detected")"
