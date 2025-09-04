@@ -15,7 +15,7 @@ check_component() {
 
     case $component in
         "panel")
-            if ! command -v vsftpd &> /dev/null; then
+            if ! command -v mc &> /dev/null; then
     		echo "1"
 	    else
     		echo "2"
