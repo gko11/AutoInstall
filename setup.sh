@@ -34,40 +34,27 @@ print_header() {
     clear
     echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
     echo -e "\033[1;32m"
-    echo -e "┌────────────────────────────────────────────────────────────────────┐"
-    echo -e "│   ██████╗  ██╗  ██╗ ██████╗ ██╗  ██╗                                        │"
-    echo -e "│   ███╗   ███╗██████╗ ███████╗██╗███████╗██████╗ ██████╗  ██████╗    │"
-    echo -e "│   ████╗ ████║██╔══██╗██╔════╝██║██╔════╝██╔══██╗██╔══██╗██╔═══██╗    │"
-    echo -e "│   ██╔████╔██║██████╔╝█████╗  ██║█████╗  ██████╔╝██████╔╝██║   ██║    │"
-    echo -e "│   ██║╚██╔╝██║██╔══██╗██╔══╝  ██║██╔══╝  ██╔══██╗██╔══██╗██║   ██║    │"
-    echo -e "│   ██║ ╚═╝ ██║██║  ██║██║     ██║███████╗██║  ██║██║  ██║╚██████╔╝    │"
-    echo -e "│   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝    │"                                                                                                                                       
+    echo -e "┌───────────────────────────────────────────────────────────────────┐"
+    echo -e "│  ██████╗ █████╗ ██████╗ ██╗   ██╗██████╗  █████╗ ██████╗  █████╗  │"
+    echo -e "│ ██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗ │"
+    echo -e "│ ██║     ███████║██████╔╝ ╚████╔╝ ██████╔╝███████║██████╔╝███████║ │"
+    echo -e "│ ██║     ██╔══██║██╔═══╝   ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗██╔══██║ │"
+    echo -e "│ ╚██████╗██║  ██║██║        ██║   ██████╔╝██║  ██║██║  ██║██║  ██║ │"
+    echo -e "│  ╚═════╝╚═╝  ╚═╝╚═╝        ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ │"
     echo -e "└───────────────────────────────────────────────────────────────────┘"
     echo -e "\033[0m"
     echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
     if [ "$LANGUAGE" = "en" ]; then
-        echo -e "${GREEN}AutoInstall by gko11${RESET}"
-        echo -e "${CYAN}Project: https://github.com/gko11/AutoInstall${RESET}"
-        echo -e "${YELLOW}Contacts: @mrfierros${RESET}"
-        echo -e "${CYAN}Version: 1.0${RESET}"
+        echo -e "${GREEN}RemnaSetup by capybara${RESET}"
+        echo -e "${CYAN}Project: https://github.com/Capybara-z/RemnaSetup${RESET}"
+        echo -e "${YELLOW}Contacts: @KaTTuBaRa${RESET}"
+        echo -e "${CYAN}Version: 2.5${RESET}"
         echo
         echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
         echo -e "${YELLOW}Made with support from:${RESET}"
         echo -e "${CYAN}GitHub SoloBot: https://github.com/Vladless/Solo_bot${RESET}"
         echo -e "${YELLOW}Contacts: @Vladless${RESET}"
-	echo
-	echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
-	echo -e "${GREEN}RemnaSetup by capybara${RESET}"
-        echo -e "${CYAN}Project: https://github.com/Capybara-z/RemnaSetup${RESET}"
-        echo -e "${YELLOW}Contacts: @KaTTuBaRa${RESET}"
-        echo -e "${CYAN}Version: 2.5${RESET}"
     else
-        echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
-        echo -e "${GREEN}AutoInstall by gko11${RESET}"
-        echo -e "${CYAN}Проект: https://github.com/gko11/AutoInstall${RESET}"
-        echo -e "${YELLOW}Контакты: @mrfierros${RESET}"
-        echo -e "${CYAN}Версия: 1.0${RESET}"
-       	echo
         echo -e "${GREEN}RemnaSetup by capybara${RESET}"
         echo -e "${CYAN}Проект: https://github.com/Capybara-z/RemnaSetup${RESET}"
         echo -e "${YELLOW}Контакты: @KaTTuBaRa${RESET}"
@@ -77,10 +64,10 @@ print_header() {
         echo -e "${YELLOW}Сделано при поддержке проекта:${RESET}"
         echo -e "${CYAN}GitHub SoloBot: https://github.com/Vladless/Solo_bot${RESET}"
         echo -e "${YELLOW}Контакты: @Vladless${RESET}"
-	
     fi
     echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
     echo
+
 }
 
 
