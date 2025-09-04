@@ -35,33 +35,14 @@ check_component() {
                     fi
 		done
 	    else
-    		echo "2"
+    		REINSTALL_VSFTPD=true
             fi
             ;;
-        "subscription")
-            if [ -f "$path/docker-compose.yml" ] && (cd "$path" && docker compose ps -q | grep -q "remnawave-subscription-page") || [ -f "$path/app-config.json" ]; then
-                info "$(get_string "install_full_subscription_detected")"
-                while true; do
-                    question "$(get_string "install_full_subscription_reinstall")"
-                    REINSTALL="$REPLY"
-                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_full_stopping")"
-                        cd "$path" && docker compose down
-                        docker rmi remnawave/subscription-page:latest 2>/dev/null || true
-                        rm -f "$path/app-config.json"
-                        rm -f "$path/docker-compose.yml"
-                        REINSTALL_SUBSCRIPTION=true
-                        break
-                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_full_subscription_reinstall_denied")"
-                        REINSTALL_SUBSCRIPTION=false
-                        break
-                    else
-                        warn "$(get_string "install_full_please_enter_yn")"
-                    fi
-                done
-            else
-                REINSTALL_SUBSCRIPTION=true
+        "ufw")
+             if command -v ufw >/dev/null 2>&1 && [ -f "$file" ] && [[ -d "$path" ]]; then
+    		echo "1"
+	    else
+    		echo "2"
             fi
             ;;
         "caddy")
@@ -300,7 +281,7 @@ show_panel_info() {
 
 main() {
     check_component "vsftpd" "" "/etc/vsftpd.conf"
-    check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
+    check_component "ufw" "/etc/ufw" "/etc/ufw/sysctl.conf"
     check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
 
     
