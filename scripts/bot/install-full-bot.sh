@@ -17,23 +17,6 @@ check_component() {
         "vsftpd")
             if command -v vsftpd >/dev/null 2>&1 && [ -f "$file" ]; then
     		info "$(get_string "install_bot_detected")"
-		while true; do
-                    question "$(get_string "install_bot_reinstall")"
-                    REINSTALL="$REPLY"
-                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_bot_stopping")"
-                        sudo apt purge vsftpd
-
-                        rm -f "$file"
-                        REINSTALL_PANEL=true
-                        break
-                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_full_reinstall_denied")"
-                        REINSTALL_PANEL=false
-                        break
-                    else
-                        warn "$(get_string "install_full_please_enter_yn")"
-                    fi
 
 	    else
     		echo "2"
