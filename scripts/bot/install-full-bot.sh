@@ -17,7 +17,7 @@ check_component() {
         "")
             if command -v vsftpd &> /dev/null then
                 echo "1"
-                done
+                
             else
                 echo "2"
             fi
