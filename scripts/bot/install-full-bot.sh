@@ -17,10 +17,10 @@ check_component() {
         "panel")
             if command -v vsftpd &> /dev/null then
             then
-    echo "Программа 'имя_программы' установлена."
-else
-    echo "Программа 'имя_программы' не установлена."
-fi
+    		echo "1"
+	    else
+    		echo "2"
+            fi
             ;;
         "subscription")
             if [ -f "$path/docker-compose.yml" ] && (cd "$path" && docker compose ps -q | grep -q "remnawave-subscription-page") || [ -f "$path/app-config.json" ]; then
