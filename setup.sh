@@ -122,7 +122,7 @@ main() {
     while true; do
         display_main_menu
         case $MAIN_OPTION in
-            1) run_script "${SCRIPT_DIR}/install.sh" ;;
+            1) run_script "${SCRIPT_DIR}/scripts/bot/install-full-bot.sh" ;;
             2) run_script "${SCRIPT_DIR}/scripts/remnawave/update-subscription.sh" ;;
             3) run_script "${SCRIPT_DIR}/scripts/remnawave/update-subscription.sh" ;;
             0)
