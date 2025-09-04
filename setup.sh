@@ -114,10 +114,7 @@ run_script() {
             read -n 1 -s -r -p "$(get_string "press_any_key")"
             echo
         fi
-    else
-        error "$(get_string "script_not_found"): $script"
-        read -n 1 -s -r -p "$(get_string "press_any_key")"
-        echo
+
     fi
 }
 
