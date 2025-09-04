@@ -282,7 +282,7 @@ show_panel_info() {
 }
 
 main() {
-    check_component "panel" "/opt/remnawave" "/opt/remnawave/.env"
+    check_component "vsftpd" "/opt/remnawave" "/opt/remnawave/.env"
     check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
     check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
 
