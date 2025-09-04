@@ -5,7 +5,7 @@ source "/opt/autoinstall/scripts/common/functions.sh"
 source "/opt/autoinstall/scripts/common/languages.sh"
 
 REINSTALL_VSFTPD=false
-REINSTALL_SUBSCRIPTION=false
+REINSTALL_UFW=false
 REINSTALL_CADDY=false
 
 check_component() {
@@ -16,18 +16,18 @@ check_component() {
     case $component in
         "vsftpd")
             if command -v vsftpd >/dev/null 2>&1 && [ -f "$file" ]; then
-    		info "$(get_string "install_bot_detected")"
+    		info "$(get_string "install_bot_detected_vsftpd")"
 		while true; do
-                    question "$(get_string "install_bot_reinstall")"
+                    question "$(get_string "install_bot_reinstall_vsftpd")"
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_bot_stopping")"
+                        warn "$(get_string "install_bot_stopping_vsftpd")"
                         sudo apt purge vsftpd
                         rm -f "$file"
                         REINSTALL_VSFTPD=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_bot_reinstall_denied")"
+                        info "$(get_string "install_bot_reinstall_denied_vsftpd")"
                         REINSTALL_VSFTPD=false
                         break
                     else
@@ -40,9 +40,27 @@ check_component() {
             ;;
         "ufw")
              if command -v ufw >/dev/null 2>&1 && [ -f "$file" ] && [[ -d "$path" ]]; then
-    		echo "1"
+    		info "$(get_string "install_bot_detected")"
+		while true; do
+                    question "$(get_string "install_bot_reinstall")"
+                    REINSTALL="$REPLY"
+                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
+                        warn "$(get_string "install_bot_stopping")"
+                        sudo apt purge ufw
+                        rm -f "$file"
+                        rm -f "$path"
+                        REINSTALL_UFW=true
+                        break
+                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
+                        info "$(get_string "install_bot_reinstall_denied")"
+                        REINSTALL_UFW=false
+                        break
+                    else
+                        warn "$(get_string "install_bot_please_enter_yn")"
+                    fi
+		done
 	    else
-    		echo "2"
+    		REINSTALL_UFW=true
             fi
             ;;
         "caddy")
@@ -139,7 +157,7 @@ install_without_protection() {
         docker compose up -d
     fi
 
-    if [ "$REINSTALL_SUBSCRIPTION" = true ]; then
+    if [ "$REINSTALL_UFW" = true ]; then
         info "$(get_string "install_full_installing_subscription")"
         mkdir -p /opt/remnawave/subscription
         cd /opt/remnawave/subscription
@@ -208,7 +226,7 @@ install_with_protection() {
         docker compose up -d
     fi
 
-    if [ "$REINSTALL_SUBSCRIPTION" = true ]; then
+    if [ "$REINSTALL_UFW" = true ]; then
         info "$(get_string "install_full_installing_subscription_with_protection")"
         mkdir -p /opt/remnawave/subscription
         cd /opt/remnawave/subscription
