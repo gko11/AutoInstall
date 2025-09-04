@@ -119,4 +119,65 @@ run_script() {
     fi
 }
 
+main() {
+    select_language
+    while true; do
+        display_main_menu
+        case $MAIN_OPTION in
+            1)
+                while true; do
+                    display_remnawave_menu
+                    case $REMNAWAVE_OPTION in
+                        1) run_script "${SCRIPT_DIR}/scripts/remnawave/install-full.sh" ;;
+                        2) run_script "${SCRIPT_DIR}/scripts/remnawave/install-panel.sh" ;;
+                        3) run_script "${SCRIPT_DIR}/scripts/remnawave/install-subscription.sh" ;;
+                        4) run_script "${SCRIPT_DIR}/scripts/remnawave/install-caddy.sh" ;;
+                        5) run_script "${SCRIPT_DIR}/scripts/remnawave/update-full.sh" ;;
+                        6) run_script "${SCRIPT_DIR}/scripts/remnawave/update-panel.sh" ;;
+                        7) run_script "${SCRIPT_DIR}/scripts/remnawave/update-subscription.sh" ;;
+                        8) break ;;
+                        *) warn "$(get_string "invalid_choice")" ;;
+                    esac
+                done
+                ;;
+            2)
+                while true; do
+                    display_remnanode_menu
+                    case $REMNANODE_OPTION in
+                        1) run_script "${SCRIPT_DIR}/scripts/remnanode/install-full.sh" ;;
+                        2) run_script "${SCRIPT_DIR}/scripts/remnanode/install-node.sh" ;;
+                        3) run_script "${SCRIPT_DIR}/scripts/remnanode/install-caddy.sh" ;;
+                        4) run_script "${SCRIPT_DIR}/scripts/remnanode/install-ipv6.sh" ;;
+                        5) run_script "${SCRIPT_DIR}/scripts/remnanode/install-bbr.sh" ;;
+                        6) run_script "${SCRIPT_DIR}/scripts/remnanode/install-warp.sh" ;;
+                        7) run_script "${SCRIPT_DIR}/scripts/remnanode/update.sh" ;;
+                        8) break ;;
+                        *) warn "$(get_string "invalid_choice")" ;;
+                    esac
+                done
+                ;;
+            3)
+                while true; do
+                    display_backup_menu
+                    case $BACKUP_OPTION in
+                        1) run_script "${SCRIPT_DIR}/scripts/backups/backup.sh" ;;
+                        2) run_script "${SCRIPT_DIR}/scripts/backups/restore.sh" ;;
+                        3) run_script "${SCRIPT_DIR}/scripts/backups/auto_backup.sh" ;;
+                        0) break ;;
+                        *) warn "$(get_string "invalid_choice")" ;;
+                    esac
+                done
+                ;;
+            0)
+                info "$(get_string "exiting")"
+                echo -e "${RESET}"
+                exit 0
+                ;;
+            *)
+                warn "$(get_string "invalid_choice")"
+                ;;
+        esac
+    done
+}
+
 main 
