@@ -15,7 +15,7 @@ check_component() {
 
     case $component in
         "panel")
-            if command -v vsftpd &> /dev/null then
+            if (dpkg -s vsftpd | grep Status) &> /dev/null then
             then
     		echo "1"
 	    else
