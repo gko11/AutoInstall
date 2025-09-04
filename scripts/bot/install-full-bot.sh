@@ -308,7 +308,138 @@ main() {
     check_component "subscription" "/opt/remnawave/subscription" "/opt/remnawave/subscription/.env"
     check_component "caddy" "/opt/remnawave/caddy" "/opt/remnawave/caddy/.env"
 
+    if [ "$REINSTALL_PANEL" = false ] && [ "$REINSTALL_SUBSCRIPTION" = false ] && [ "$REINSTALL_CADDY" = false ]; then
+        info "$(get_string "install_full_no_components")"
+        read -n 1 -s -r -p "$(get_string "install_full_press_key")"
         exit 0
+    fi
+
+    while true; do
+        question "$(get_string "install_full_need_protection")"
+        NEED_PROTECTION="$REPLY"
+        if [[ "$NEED_PROTECTION" == "y" || "$NEED_PROTECTION" == "Y" ]]; then
+            break
+        elif [[ "$NEED_PROTECTION" == "n" || "$NEED_PROTECTION" == "N" ]]; then
+            break
+        else
+            warn "$(get_string "install_full_please_enter_yn")"
+        fi
+    done
+
+    while true; do
+        question "$(get_string "install_full_enter_panel_domain")"
+        PANEL_DOMAIN="$REPLY"
+        if [[ -n "$PANEL_DOMAIN" ]]; then
+            break
+        fi
+        warn "$(get_string "install_full_domain_empty")"
+    done
+
+    while true; do
+        question "$(get_string "install_full_enter_sub_domain")"
+        SUB_DOMAIN="$REPLY"
+        if [[ -n "$SUB_DOMAIN" ]]; then
+            break
+        fi
+        warn "$(get_string "install_full_domain_empty")"
+    done
+
+    question "$(get_string "install_full_enter_panel_port")"
+    PANEL_PORT="$REPLY"
+    PANEL_PORT=${PANEL_PORT:-3000}
+
+    question "$(get_string "install_full_enter_sub_port")"
+    SUB_PORT="$REPLY"
+    SUB_PORT=${SUB_PORT:-3010}
+
+    while true; do
+        question "$(get_string "install_full_enter_project_name")"
+        PROJECT_NAME="$REPLY"
+        if [[ -n "$PROJECT_NAME" ]]; then
+            break
+        fi
+        warn "$(get_string "install_full_project_name_empty")"
+    done
+
+    while true; do
+        question "$(get_string "install_full_enter_project_description")"
+        PROJECT_DESCRIPTION="$REPLY"
+        if [[ -n "$PROJECT_DESCRIPTION" ]]; then
+            break
+        fi
+        warn "$(get_string "install_full_project_description_empty")"
+    done
+
+    if [ "$NEED_PROTECTION" = "y" ]; then
+        while true; do
+            question "$(get_string "install_full_enter_login_route")"
+            CUSTOM_LOGIN_ROUTE="$REPLY"
+            if [[ -n "$CUSTOM_LOGIN_ROUTE" ]]; then
+                break
+            fi
+            warn "$(get_string "install_full_login_route_empty")"
+        done
+
+        while true; do
+            question "$(get_string "install_full_enter_admin_login")"
+            LOGIN_USERNAME="$REPLY"
+            if [[ -n "$LOGIN_USERNAME" ]]; then
+                break
+            fi
+            warn "$(get_string "install_full_admin_login_empty")"
+        done
+
+        while true; do
+            question "$(get_string "install_full_enter_admin_email")"
+            LOGIN_EMAIL="$REPLY"
+            if [[ -n "$LOGIN_EMAIL" ]]; then
+                break
+            fi
+            warn "$(get_string "install_full_admin_email_empty")"
+        done
+
+        while true; do
+            question "$(get_string "install_full_enter_admin_password")"
+            LOGIN_PASSWORD="$REPLY"
+            if [[ ${#LOGIN_PASSWORD} -lt 8 ]]; then
+                warn "$(get_string "install_full_password_short")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [A-Z] ]]; then
+                warn "$(get_string "install_full_password_uppercase")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [a-z] ]]; then
+                warn "$(get_string "install_full_password_lowercase")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [0-9] ]]; then
+                warn "$(get_string "install_full_password_number")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [^a-zA-Z0-9] ]]; then
+                warn "$(get_string "install_full_password_special")"
+                continue
+            fi
+            break
+        done
+    fi
+
+    if ! check_docker; then
+        install_docker
+    fi
+    if [ "$NEED_PROTECTION" = "y" ]; then
+        install_with_protection
+    else
+        install_without_protection
+    fi
+
+    success "$(get_string "install_full_complete")"
+
+    show_panel_info
+    
+    read -n 1 -s -r -p "$(get_string "install_full_press_key")"
+    exit 0
 }
 
 main
