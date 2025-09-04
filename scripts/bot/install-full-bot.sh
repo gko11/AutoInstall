@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source "/opt/remnasetup/scripts/common/colors.sh"
-source "/opt/remnasetup/scripts/common/functions.sh"
-source "/opt/remnasetup/scripts/common/languages.sh"
+source "/opt/autoinstall/scripts/common/colors.sh"
+source "/opt/autoinstall/scripts/common/functions.sh"
+source "/opt/autoinstall/scripts/common/languages.sh"
 
 REINSTALL_PANEL=false
 REINSTALL_SUBSCRIPTION=false
