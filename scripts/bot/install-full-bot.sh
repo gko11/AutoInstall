@@ -33,7 +33,9 @@ check_component() {
                     else
                         warn "$(get_string "install_full_please_enter_yn")"
                     fi
+
 	    else
+    		REINSTALL_VSFTPD=true
             fi
             ;;
         "subscription")
