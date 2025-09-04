@@ -14,7 +14,7 @@ check_component() {
     local env_file=$3
 
     case $component in
-        "")
+        "panel")
             if command -v vsftpd &> /dev/null then
                 echo "1"
                 
