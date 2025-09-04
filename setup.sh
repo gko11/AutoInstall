@@ -66,7 +66,7 @@ print_header() {
         echo -e "${GREEN}AutoInstall by gko11${RESET}"
         echo -e "${CYAN}Проект: https://github.com/gko11/AutoInstall${RESET}"
         echo -e "${YELLOW}Контакты: @mrfierros${RESET}"
-        echo -e "${CYAN}Версия: 1.0${RESET}
+        echo -e "${CYAN}Версия: 1.0${RESET}"
        	echo
         echo -e "${GREEN}RemnaSetup by capybara${RESET}"
         echo -e "${CYAN}Проект: https://github.com/Capybara-z/RemnaSetup${RESET}"
