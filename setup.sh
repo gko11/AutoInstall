@@ -109,13 +109,15 @@ run_script() {
     if [ -f "$script" ]; then
         bash "$script"
         local result=$?
-        if [ $result -ne 0 ]; then
+        if [ "$result" -ne 0 ]; then
             warn "$(get_string "script_error")"
             read -n 1 -s -r -p "$(get_string "press_any_key")"
+            echo
         fi
     else
         error "$(get_string "script_not_found"): $script"
         read -n 1 -s -r -p "$(get_string "press_any_key")"
+        echo
     fi
 }
 
