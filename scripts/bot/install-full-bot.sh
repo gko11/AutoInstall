@@ -100,7 +100,6 @@ check_component() {
 }
 
 install_ftp() {
-    if [ "$REINSTALL_FTP" = true ]; then
         info "$(get_string "ru_install_bot_installing_vsftpd")"
 	sudo apt install vsftpd -y > /dev/null
 	sudo systemctl start vsftpd > /dev/null
@@ -108,10 +107,6 @@ install_ftp() {
 	sed -i "s|local_enable=NO|local_enable=YES|g" /etc/vsftpd.conf
 	sed -i "s|write_enable=NO|write_enable=YES|g" /etc/vsftpd.conf
 	sed -i "s|local_umask=022|local_umask=023|g" /etc/vsftpd.conf
-
-
-    fi
-
 }
 
 
@@ -211,7 +206,7 @@ main() {
         fi
     done
 
-     if [ "$NEED_FTP" == "y" ] || [ "$REINSTALL_VSFTPD" == true ]; then
+     if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]] || [ "$REINSTALL_VSFTPD" == true ]; then
         install_ftp
      fi
 
