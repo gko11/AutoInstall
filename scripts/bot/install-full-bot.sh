@@ -162,7 +162,7 @@ main() {
         done
     fi
 
-    if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]] || [ "$REINSTALL_VSFTPD" == true ] && [ "$REINSTALL_VSFTPD_INFO" == true ]; then
+    if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]] || [[ "$REINSTALL_VSFTPD" == true ] && [ "$REINSTALL_VSFTPD_INFO" == true ]]; then
 	while true; do
             question "$(get_string "install_bot_enter_vsftpd_login")"
             FTP_LOGIN_USERNAME="$REPLY"
