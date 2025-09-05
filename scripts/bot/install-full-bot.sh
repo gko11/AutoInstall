@@ -146,7 +146,7 @@ main() {
         exit 0
     fi
 
-    if [ "$REINSTALL_FTP" = false ]; then
+    if [ "$REINSTALL_FTP" == false ] && ! command -v vsftpd >/dev/null; then
     	while true; do
             question "$(get_string "install_bot_vsftpd")"
             NEED_FTP="$REPLY"
@@ -209,11 +209,11 @@ main() {
         fi
     done
 
-     if [ "$NEED_FTP" = "y" ] || [ "$REINSTALL_FTP" = true ]; then
+     if [ "$NEED_FTP" == "y" ] || [ "$REINSTALL_FTP" == true ]; then
         install_ftp
      fi
 
-     if [ "$NEED_UFW" = "y" ]; then
+     if [ "$NEED_UFW" == "y" ]; then
         install_ufw
      fi
 
