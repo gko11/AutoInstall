@@ -101,11 +101,11 @@ check_component() {
 
 install_ftp() {
         info "$(get_string "ru_install_bot_installing_vsftpd")"
-	sudo apt-get install vsftpd -y > /dev/null
+	sudo apt-get install vsftpd -y
 	rm -f /etc/vsftpd.conf
 	cp /opt/autoinstall/configs/vsftpd.conf /etc/vsftpd.conf
-	sudo systemctl start vsftpd > /dev/null
-	sudo adduser $FTP_LOGIN_USERNAME
+	sudo systemctl start vsftpd
+	useradd -p "$(openssl passwd -6 $FTP_LOGIN_PASSWORD)" $FTP_LOGIN_USERNAME
 	echo "$FTP_LOGIN_USERNAME" | sudo tee -a /etc/vsftpd.userlist
 	
 }
