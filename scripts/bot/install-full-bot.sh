@@ -64,28 +64,27 @@ check_component() {
             fi
             ;;
 	"solobot")
-             if command -v ufw >/dev/null 2>&1 && [ -f "$file" ] && [[ -d "$path" ]]; then
-    		info "$(get_string "install_bot_detected_ufw")"
+             if [ -f "$file" ] && [[ -d "$path" ]]; then
+    		info "$(get_string "install_bot_detected_solobot")"
 		while true; do
                     question "$(get_string "install_bot_reinstall_ufw")"
+		    info "$(get_string "install_bot_atention_solobot")"
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_bot_stopping_ufw")"
-                        sudo apt purge ufw
-                        rm -f "$file"
-                        rm -f "$path"
-                        REINSTALL_UFW=true
+                        warn "$(get_string "install_bot_stopping_solobot")"
+                       
+                        REINSTALL_BOT=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_bot_reinstall_denied_ufw")"
-                        REINSTALL_UFW=false
+                        info "$(get_string "install_bot_reinstall_denied_solobot")"
+                        REINSTALL_BOT=false
                         break
                     else
                         warn "$(get_string "install_bot_please_enter_yn")"
                     fi
 		done
 	    else
-    		REINSTALL_UFW=true
+    		REINSTALL_BOT=true
             fi
             ;;
 
@@ -292,6 +291,7 @@ show_panel_info() {
 main() {
     check_component "vsftpd" "" "/etc/vsftpd.conf"
     check_component "ufw" "/etc/ufw" "/etc/ufw/sysctl.conf"
+    check_component "solobot" "/opt/tg_bot" "/opt/tg_bot/main.py"
     
     if [ "$REINSTALL_VSFTPD" = false ] && [ "$REINSTALL_UFW" = false ] && [ "$REINSTALL_BOT" = false ]; then
         info "$(get_string "install_bot_no_components")"
