@@ -48,7 +48,7 @@ check_component() {
                         warn "$(get_string "install_bot_stopping_ufw")"
                         sudo apt-get purge -y ufw > /dev/null
                         rm -f "$file"
-                        rm -f "$path"
+                        rm -r "$path"
                         REINSTALL_UFW=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
