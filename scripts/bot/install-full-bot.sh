@@ -5,6 +5,7 @@ source "/opt/autoinstall/scripts/common/functions.sh"
 source "/opt/autoinstall/scripts/common/languages.sh"
 
 REINSTALL_VSFTPD=false
+REINSTALL_VSFTPD_INFO=false
 REINSTALL_UFW=false
 REINSTALL_BOT=false
 
@@ -25,6 +26,7 @@ check_component() {
                         sudo apt-get purge -y vsftpd > /dev/null
                         rm -f "$file"
                         REINSTALL_VSFTPD=true
+			REINSTALL_VSFTPD_INFO = true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_vsftpd")"
@@ -146,7 +148,7 @@ main() {
         exit 0
     fi
 
-    if [ "$REINSTALL_VSFTPD" == false ]; then
+    if [ "$REINSTALL_VSFTPD" == true ] && [ "$REINSTALL_VSFTPD_INFO" == false ]; then
     	while true; do
             question "$(get_string "install_bot_vsftpd")"
             NEED_FTP="$REPLY"
@@ -160,7 +162,7 @@ main() {
         done
     fi
 
-    if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]]; then
+    if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]] || [ "$REINSTALL_VSFTPD" == true ] && [ "$REINSTALL_VSFTPD_INFO" == true ]; then
 	while true; do
             question "$(get_string "install_bot_enter_vsftpd_login")"
             FTP_LOGIN_USERNAME="$REPLY"
