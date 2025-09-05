@@ -157,7 +157,7 @@ main() {
             question "$(get_string "install_bot_enter_admin_password")"
             FTP_LOGIN_PASSWORD="$REPLY"
             if [[ ${#FTP_LOGIN_PASSWORD} -lt 8 ]]; then
-                warn "$(get_string "install_full_password_short")"
+                warn "$(get_string "install_bot_password_short")"
                 continue
             fi
             if ! [[ "$FTP_LOGIN_PASSWORD" =~ [A-Z] ]]; then
