@@ -40,19 +40,19 @@ check_component() {
             ;;
         "ufw")
              if command -v ufw >/dev/null 2>&1 && [ -f "$file" ] && [[ -d "$path" ]]; then
-    		info "$(get_string "install_bot_detected")"
+    		info "$(get_string "install_bot_detected_ufw")"
 		while true; do
-                    question "$(get_string "install_bot_reinstall")"
+                    question "$(get_string "install_bot_reinstall_ufw")"
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_bot_stopping")"
+                        warn "$(get_string "install_bot_stopping_ufw")"
                         sudo apt purge ufw
                         rm -f "$file"
                         rm -f "$path"
                         REINSTALL_UFW=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_bot_reinstall_denied")"
+                        info "$(get_string "install_bot_reinstall_denied_ufw")"
                         REINSTALL_UFW=false
                         break
                     else
