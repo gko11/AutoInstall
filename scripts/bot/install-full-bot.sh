@@ -125,7 +125,7 @@ install_ufw() {
 	sudo ufw allow 21
 	sudo ufw allow 8010
 	sudo ufw enable -y
-	success "$(get_string "install_bot_vsftpd_success")"
+	success "$(get_string "install_bot_ufw_success")"
 	
 }
 
