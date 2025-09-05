@@ -145,6 +145,7 @@ main() {
         read -n 1 -s -r -p "$(get_string "install_bot_press_key")"
         exit 0
     fi
+echo "$REINSTALL_FTP"
 
     if [ "$REINSTALL_FTP" = false ] && ! command -v vsftpd >/dev/null; then
     	while true; do
