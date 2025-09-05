@@ -63,41 +63,7 @@ check_component() {
     		REINSTALL_UFW=true
             fi
             ;;
-        "caddy")
-            if [ -f "$path/docker-compose.yml" ] || [ -f "$path/Caddyfile" ]; then
-                info "$(get_string "install_full_caddy_detected")"
-                while true; do
-                    question "$(get_string "install_full_caddy_reinstall")"
-                    REINSTALL="$REPLY"
-                    if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
-                        warn "$(get_string "install_full_stopping")"
-                        if [ -f "$path/docker-compose.yml" ]; then
-                            cd "$path" && docker compose down
-                        fi
-                        if docker ps -a --format '{{.Names}}' | grep -q "remnawave-caddy\|caddy"; then
-                            if [ "$NEED_PROTECTION" = "y" ]; then
-                                docker rmi remnawave/caddy-with-auth:latest 2>/dev/null || true
-                            else
-                                docker rmi caddy:2.9 2>/dev/null || true
-                            fi
-                        fi
-                        rm -f "$path/Caddyfile"
-                        rm -f "$path/docker-compose.yml"
-                        REINSTALL_CADDY=true
-                        break
-                    elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
-                        info "$(get_string "install_full_caddy_reinstall_denied")"
-                        REINSTALL_CADDY=false
-                        break
-                    else
-                        warn "$(get_string "install_full_please_enter_yn")"
-                    fi
-                done
-            else
-                REINSTALL_CADDY=true
-            fi
-            ;;
-    esac
+	esac
 }
 
 install_docker() {
