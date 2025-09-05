@@ -154,26 +154,26 @@ main() {
         done       
 
         while true; do
-            question "$(get_string "install_full_enter_admin_password")"
-            LOGIN_PASSWORD="$REPLY"
-            if [[ ${#LOGIN_PASSWORD} -lt 8 ]]; then
+            question "$(get_string "install_bot_enter_admin_password")"
+            FTP_LOGIN_PASSWORD="$REPLY"
+            if [[ ${#FTP_LOGIN_PASSWORD} -lt 8 ]]; then
                 warn "$(get_string "install_full_password_short")"
                 continue
             fi
-            if ! [[ "$LOGIN_PASSWORD" =~ [A-Z] ]]; then
-                warn "$(get_string "install_full_password_uppercase")"
+            if ! [[ "$FTP_LOGIN_PASSWORD" =~ [A-Z] ]]; then
+                warn "$(get_string "install_bot_password_uppercase")"
                 continue
             fi
-            if ! [[ "$LOGIN_PASSWORD" =~ [a-z] ]]; then
-                warn "$(get_string "install_full_password_lowercase")"
+            if ! [[ "$FTP_LOGIN_PASSWORD" =~ [a-z] ]]; then
+                warn "$(get_string "install_bot_password_lowercase")"
                 continue
             fi
-            if ! [[ "$LOGIN_PASSWORD" =~ [0-9] ]]; then
-                warn "$(get_string "install_full_password_number")"
+            if ! [[ "$FTP_LOGIN_PASSWORD" =~ [0-9] ]]; then
+                warn "$(get_string "install_bot_password_number")"
                 continue
             fi
-            if ! [[ "$LOGIN_PASSWORD" =~ [^a-zA-Z0-9] ]]; then
-                warn "$(get_string "install_full_password_special")"
+            if ! [[ "$FTP_LOGIN_PASSWORD" =~ [^a-zA-Z0-9] ]]; then
+                warn "$(get_string "install_bot_password_special")"
                 continue
             fi
             break
