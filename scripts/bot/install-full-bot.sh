@@ -67,8 +67,8 @@ check_component() {
              if [ -f "$file" ] && [[ -d "$path" ]]; then
     		info "$(get_string "install_bot_detected_solobot")"
 		while true; do
-                    question "$(get_string "install_bot_reinstall_ufw")"
 		    info "$(get_string "install_bot_atention_solobot")"
+                    question "$(get_string "install_bot_reinstall_solobot")"
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_solobot")"
