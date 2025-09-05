@@ -105,7 +105,8 @@ install_ftp() {
 	rm -f /etc/vsftpd.conf
 	cp /opt/autoinstall/configs/vsftpd.conf /etc/vsftpd.conf
 	sudo systemctl start vsftpd
-	useradd -p $(openssl passwd -1 $FTP_LOGIN_PASSWORD) $FTP_LOGIN_USERNAME
+	adduser "$FTP_LOGIN_USERNAME"
+	echo "$FTP_LOGIN_PASSWORD" | passwd "$FTP_LOGIN_USERNAME" --stdin
 	echo "$FTP_LOGIN_USERNAME" | sudo tee -a /etc/vsftpd.userlist
 	
 }
