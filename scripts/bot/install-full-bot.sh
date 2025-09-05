@@ -78,7 +78,7 @@ check_component() {
 			sudo systemctl stop caddy  > /dev/null
 			sudo apt-get purge -y caddy > /dev/null
 			sudo systemctl stop postgresql > /dev/null
-			sudo apt purge postgresql postgresql-contrib -y > /dev/null 
+			sudo apt-get purge postgresql postgresql-contrib -y > /dev/null 
                         REINSTALL_BOT=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
@@ -95,179 +95,6 @@ check_component() {
             ;;
 
 	esac
-}
-
-install_docker() {
-    if ! command -v docker &> /dev/null; then
-        info "$(get_string "install_full_installing_docker")"
-        sudo curl -fsSL https://get.docker.com | sh
-    fi
-}
-
-generate_64() {
-    openssl rand -hex 64
-}
-
-generate_24() {
-    openssl rand -hex 24
-}
-
-generate_login() {
-    tr -dc 'a-zA-Z' < /dev/urandom | head -c 15
-}
-
-
-
-install_without_protection() {
-    if [ "$REINSTALL_VSFTPD" = true ]; then
-        info "$(get_string "install_full_installing")"
-        mkdir -p /opt/remnawave
-        cd /opt/remnawave
-
-        cp "/opt/remnasetup/data/docker/panel.env" .env
-        cp "/opt/remnasetup/data/docker/panel-compose.yml" docker-compose.yml
-
-        JWT_AUTH_SECRET=$(generate_64)
-        JWT_API_TOKENS_SECRET=$(generate_64)
-        METRICS_USER=$(generate_login)
-        METRICS_PASS=$(generate_64)
-        WEBHOOK_SECRET_HEADER=$(generate_64)
-        DB_USER=$(generate_login)
-        DB_PASSWORD=$(generate_24)
-
-        export DB_USER
-        export DB_PASSWORD
-
-        sed -i "s|\$PANEL_DOMAIN|$PANEL_DOMAIN|g" .env
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" .env
-        sed -i "s|\$METRICS_USER|$METRICS_USER|g" .env
-        sed -i "s|\$METRICS_PASS|$METRICS_PASS|g" .env
-        sed -i "s|\$DB_USER|$DB_USER|g" .env
-        sed -i "s|\$DB_PASSWORD|$DB_PASSWORD|g" .env
-        sed -i "s|\$JWT_AUTH_SECRET|$JWT_AUTH_SECRET|g" .env
-        sed -i "s|\$JWT_API_TOKENS_SECRET|$JWT_API_TOKENS_SECRET|g" .env
-        sed -i "s|\$SUB_DOMAIN|$SUB_DOMAIN|g" .env
-        sed -i "s|\$WEBHOOK_SECRET_HEADER|$WEBHOOK_SECRET_HEADER|g" .env
-
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" docker-compose.yml
-
-        docker compose up -d
-    fi
-
-    if [ "$REINSTALL_UFW" = true ]; then
-        info "$(get_string "install_full_installing_subscription")"
-        mkdir -p /opt/remnawave/subscription
-        cd /opt/remnawave/subscription
-
-        cp "/opt/remnasetup/data/app-config.json" app-config.json
-        cp "/opt/remnasetup/data/docker/subscription-compose.yml" docker-compose.yml
-
-        sed -i "s|\$PANEL_DOMAIN|$PANEL_DOMAIN|g" docker-compose.yml
-        sed -i "s|\$SUB_PORT|$SUB_PORT|g" docker-compose.yml
-        sed -i "s|\$PROJECT_NAME|$PROJECT_NAME|g" docker-compose.yml
-        sed -i "s|\$PROJECT_DESCRIPTION|$PROJECT_DESCRIPTION|g" docker-compose.yml
-
-        docker compose up -d
-    fi
-
-    if [ "$REINSTALL_CADDY" = true ]; then
-        info "$(get_string "install_full_installing_caddy")"
-        mkdir -p /opt/remnawave/caddy
-        cd /opt/remnawave/caddy
-
-        cp "/opt/remnasetup/data/caddy/caddyfile" Caddyfile
-        cp "/opt/remnasetup/data/docker/caddy-compose.yml" docker-compose.yml
-
-        sed -i "s|\$PANEL_DOMAIN|$PANEL_DOMAIN|g" Caddyfile
-        sed -i "s|\$SUB_DOMAIN|$SUB_DOMAIN|g" Caddyfile
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" Caddyfile
-        sed -i "s|\$SUB_PORT|$SUB_PORT|g" Caddyfile
-
-        docker compose up -d
-    fi
-}
-
-install_with_protection() {
-    if [ "$REINSTALL_VSFTPD" = true ]; then
-        info "$(get_string "install_full_installing_with_protection")"
-        mkdir -p /opt/remnawave
-        cd /opt/remnawave
-
-        cp "/opt/remnasetup/data/docker/panel.env" .env
-        cp "/opt/remnasetup/data/docker/panel-compose.yml" docker-compose.yml
-
-        JWT_AUTH_SECRET=$(generate_64)
-        JWT_API_TOKENS_SECRET=$(generate_64)
-        METRICS_USER=$(generate_login)
-        METRICS_PASS=$(generate_64)
-        WEBHOOK_SECRET_HEADER=$(generate_64)
-        DB_USER=$(generate_login)
-        DB_PASSWORD=$(generate_24)
-
-        export DB_USER
-        export DB_PASSWORD
-
-        sed -i "s|\$PANEL_DOMAIN|$PANEL_DOMAIN|g" .env
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" .env
-        sed -i "s|\$METRICS_USER|$METRICS_USER|g" .env
-        sed -i "s|\$METRICS_PASS|$METRICS_PASS|g" .env
-        sed -i "s|\$DB_USER|$DB_USER|g" .env
-        sed -i "s|\$DB_PASSWORD|$DB_PASSWORD|g" .env
-        sed -i "s|\$JWT_AUTH_SECRET|$JWT_AUTH_SECRET|g" .env
-        sed -i "s|\$JWT_API_TOKENS_SECRET|$JWT_API_TOKENS_SECRET|g" .env
-        sed -i "s|\$SUB_DOMAIN|$SUB_DOMAIN|g" .env
-        sed -i "s|\$WEBHOOK_SECRET_HEADER|$WEBHOOK_SECRET_HEADER|g" .env
-
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" docker-compose.yml
-
-        docker compose up -d
-    fi
-
-    if [ "$REINSTALL_UFW" = true ]; then
-        info "$(get_string "install_full_installing_subscription_with_protection")"
-        mkdir -p /opt/remnawave/subscription
-        cd /opt/remnawave/subscription
-
-        cp "/opt/remnasetup/data/app-config.json" app-config.json
-        cp "/opt/remnasetup/data/docker/subscription-protection-compose.yml" docker-compose.yml
-
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" docker-compose.yml
-        sed -i "s|\$SUB_PORT|$SUB_PORT|g" docker-compose.yml
-        sed -i "s|\$PROJECT_NAME|$PROJECT_NAME|g" docker-compose.yml
-        sed -i "s|\$PROJECT_DESCRIPTION|$PROJECT_DESCRIPTION|g" docker-compose.yml
-
-        docker compose up -d
-    fi
-
-    if [ "$REINSTALL_CADDY" = true ]; then
-        info "$(get_string "install_full_installing_caddy_with_protection")"
-        mkdir -p /opt/remnawave/caddy
-        cd /opt/remnawave/caddy
-
-        cp "/opt/remnasetup/data/caddy/caddyfile-protection" Caddyfile
-        cp "/opt/remnasetup/data/docker/caddy-protection-compose.yml" docker-compose.yml
-
-        sed -i "s|\$PANEL_PORT|$PANEL_PORT|g" Caddyfile
-        sed -i "s|\$SUB_DOMAIN|$SUB_DOMAIN|g" Caddyfile
-        sed -i "s|\$SUB_PORT|$SUB_PORT|g" Caddyfile
-
-        sed -i "s|\$PANEL_DOMAIN|$PANEL_DOMAIN|g" docker-compose.yml
-        sed -i "s|\$CUSTOM_LOGIN_ROUTE|$CUSTOM_LOGIN_ROUTE|g" docker-compose.yml
-        sed -i "s|\$LOGIN_USERNAME|$LOGIN_USERNAME|g" docker-compose.yml
-        sed -i "s|\$LOGIN_EMAIL|$LOGIN_EMAIL|g" docker-compose.yml
-        sed -i "s|\$LOGIN_PASSWORD|$LOGIN_PASSWORD|g" docker-compose.yml
-
-        docker compose up -d
-    fi
-}
-
-check_docker() {
-    if command -v docker >/dev/null 2>&1; then
-        info "$(get_string "install_full_docker_already_installed")"
-        return 0
-    else
-        return 1
-    fi
 }
 
 
@@ -304,6 +131,32 @@ main() {
         read -n 1 -s -r -p "$(get_string "install_bot_press_key")"
         exit 0
     fi
+
+    while true; do
+        question "$(get_string "install_bot_vsftpd")"
+        NEED_FTP="$REPLY"
+        if [[ "$NEED_PROTECTION" == "y" || "$NEED_PROTECTION" == "Y" ]]; then
+            break
+        elif [[ "$NEED_PROTECTION" == "n" || "$NEED_PROTECTION" == "N" ]]; then
+            break
+        else
+            warn "$(get_string "install_bot_please_enter_yn")"
+        fi
+    done
+
+    while true; do
+        question "$(get_string "install_bot_ufw")"
+        NEED_UFW="$REPLY"
+        if [[ "$NEED_PROTECTION" == "y" || "$NEED_PROTECTION" == "Y" ]]; then
+            break
+        elif [[ "$NEED_PROTECTION" == "n" || "$NEED_PROTECTION" == "N" ]]; then
+            break
+        else
+            warn "$(get_string "install_bot_please_enter_yn")"
+        fi
+    done
+
+    
     
 
 
