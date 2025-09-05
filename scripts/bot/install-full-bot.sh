@@ -159,7 +159,7 @@ main() {
         fi
     done
 
-    if [ "$NEED_FTP" = "y" ]; then
+    if [ "$NEED_FTP" = "y" || "$NEED_FTP" == "Y" ]; then
 	while true; do
             question "$(get_string "install_bot_enter_vsftpd_login")"
             FTP_LOGIN_USERNAME="$REPLY"
