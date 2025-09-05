@@ -60,17 +60,21 @@ LANG_STRINGS["en_install_bot_password_uppercase"]="Password must contain at leas
 LANG_STRINGS["en_install_bot_password_lowercase"]="Password must contain at least one lowercase letter (a-z)."
 LANG_STRINGS["en_install_bot_password_number"]="Password must contain at least one number (0-9)."
 LANG_STRINGS["en_install_bot_password_special"]="Password must contain at least one special character (!, @, #, $, %, ^, &, *, -, +, =, ? etc.)."
+LANG_STRINGS["en_install_bot_installing_vsftpd"]="Install vsftpd..."
+
 LANG_STRINGS["en_install_bot_detected_ufw"]="Ufw installation detected"
 LANG_STRINGS["en_install_bot_reinstall_ufw"]="Reinstall ufw? (y/n):"
 LANG_STRINGS["en_install_bot_stopping_ufw"]="Stopping and removing existing installation..."
 LANG_STRINGS["en_install_bot_reinstall_denied_ufw"]="Ufw reinstallation denied"
 LANG_STRINGS["en_install_bot_ufw"]="Would you like to install Ufw? (y/n)"
+
 LANG_STRINGS["en_install_bot_detected_solobot"]="Solobot installation detected"
 LANG_STRINGS["en_install_bot_reinstall_solobot"]="Reinstall Solobot? (y/n):"
 LANG_STRINGS["en_install_bot_atention_solobot"]="Attention, the bot will be reinstalled completely, including the database!"
 LANG_STRINGS["en_install_bot_stopping_solobot"]="Stopping and removing existing installation..."
 LANG_STRINGS["en_install_bot_remove_solobot"]="Remove Solobot, Caddy,PostgresSQL!"
 LANG_STRINGS["en_install_bot_reinstall_denied_solobot"]="Solobot reinstallation denied"
+
 LANG_STRINGS["en_install_bot_press_key"]="Press any key to return to menu..."
 LANG_STRINGS["en_install_bot_please_enter_yn"]="Please enter only 'y' or 'n'"
 LANG_STRINGS["en_install_bot_no_components"]="No components to install"
@@ -91,17 +95,21 @@ LANG_STRINGS["ru_install_bot_password_uppercase"]="Пароль должен с�
 LANG_STRINGS["ru_install_bot_password_lowercase"]="Пароль должен содержать хотя бы одну строчную букву (a-z)."
 LANG_STRINGS["ru_install_bot_password_number"]="Пароль должен содержать хотя бы одну цифру (0-9)."
 LANG_STRINGS["ru_install_bot_password_special"]="Пароль должен содержать хотя бы один специальный символ (!, @, #, $, %, ^, &, *, -, +, =, ? и т.д.)."
+LANG_STRINGS["ru_install_bot_installing_vsftpd"]="Установка vsftpd..."
+
 LANG_STRINGS["ru_install_bot_detected_ufw"]="Обнаружена установка ufw"
 LANG_STRINGS["ru_install_bot_reinstall_ufw"]="Переустановить ufw? (y/n):"
 LANG_STRINGS["ru_install_bot_stopping_ufw"]="Останавливаем и удаляем существующую установку..."
 LANG_STRINGS["ru_install_bot_reinstall_denied_ufw"]="Отказано в переустановке ufw"
 LANG_STRINGS["ru_install_bot_ufw"]="Желаете установить Ufw? (y/n)"
+
 LANG_STRINGS["ru_install_bot_detected_solobot"]="Обнаружена установка Solobot"
 LANG_STRINGS["ru_install_bot_reinstall_solobot"]="Переустановить Solobot? (y/n):"
 LANG_STRINGS["ru_install_bot_atention_solobot"]="Внимание, бот будет переустановлен полностью, включая базу данных!"
 LANG_STRINGS["ru_install_bot_stopping_solobot"]="Останавливаем и удаляем существующую установку..."
 LANG_STRINGS["ru_install_bot_remove_solobot"]="Удаляю Solobot, Caddy,PostgresSQL!"
 LANG_STRINGS["ru_install_bot_reinstall_denied_solobot"]="Отказано в переустановке Solobot"
+
 LANG_STRINGS["ru_install_bot_press_key"]="Нажмите любую клавишу для возврата в меню..."
 LANG_STRINGS["ru_install_bot_please_enter_yn"]="Пожалуйста, введите только 'y' или 'n'"
 LANG_STRINGS["ru_install_bot_no_components"]="Нет компонентов для установки"

@@ -97,6 +97,20 @@ check_component() {
 	esac
 }
 
+install_ftp() {
+    if [ "$REINSTALL_FTP" = true ]; then
+        info "$(get_string "ru_install_bot_installing_vsftpd")"
+	sudo apt install vsftpd -y > /dev/null
+	sudo systemctl start vsftpd > /dev/null
+	sed -i "s|anonymous_enable=YES|anonymous_enable=NO|g" /etc/vsftpd.conf
+	sed -i "s|local_enable=NO|local_enable=YES|g" /etc/vsftpd.conf
+	sed -i "s|write_enable=NO|write_enable=YES|g" /etc/vsftpd.conf
+	sed -i "s|local_umask=022|local_umask=023|g" /etc/vsftpd.conf
+
+
+    fi
+
+}
 
 
 show_panel_info() {
@@ -191,6 +205,14 @@ main() {
             warn "$(get_string "install_bot_please_enter_yn")"
         fi
     done
+
+     if [ "$NEED_FTP" = "y" ]; then
+        install_ftp
+     fi
+
+     if [ "$NEED_UFW" = "y" ]; then
+        install_ufw
+     fi
 
     
     
