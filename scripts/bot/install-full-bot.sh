@@ -101,19 +101,8 @@ check_component() {
 
 install_ftp() {
         info "$(get_string "ru_install_bot_installing_vsftpd")"
-	sudo apt install vsftpd -y > /dev/null
+	sudo apt-get install vsftpd -y > /dev/null
 	sudo systemctl start vsftpd > /dev/null
-	sed -i "s|anonymous_enable=YES|anonymous_enable=NO|g" /etc/vsftpd.conf
-	sed -i "s|local_enable=NO|local_enable=YES|g" /etc/vsftpd.conf
-	sed -i "s|write_enable=NO|write_enable=YES|g" /etc/vsftpd.conf
-	sed -i "s|local_umask=022|local_umask=022|g" /etc/vsftpd.conf
-
-	sed -i "s|chroot_local_user=NO|chroot_local_user=YES|g" /etc/vsftpd.conf
-	sed -i "s|allow_writeable_chroot=NO|allow_writeable_chroot=YES|g" /etc/vsftpd.conf
-	sed -i "s|xferlog_enable=NO|xferlog_enable=YES|g" /etc/vsftpd.conf
-	sed -i "s|xferlog_std_format=NO|xferlog_std_format=YES|g" /etc/vsftpd.conf
-	sed -i "s|local_root=/|local_umask=022|g" /etc/vsftpd.conf
-	sed -i "s|local_umask=022|local_umask=022|g" /etc/vsftpd.conf
 }
 
 
