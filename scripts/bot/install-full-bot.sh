@@ -135,9 +135,9 @@ main() {
     while true; do
         question "$(get_string "install_bot_vsftpd")"
         NEED_FTP="$REPLY"
-        if [[ "$NEED_PROTECTION" == "y" || "$NEED_PROTECTION" == "Y" ]]; then
+        if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]]; then
             break
-        elif [[ "$NEED_PROTECTION" == "n" || "$NEED_PROTECTION" == "N" ]]; then
+        elif [[ "$NEED_FTP" == "n" || "$NEED_FTP" == "N" ]]; then
             break
         else
             warn "$(get_string "install_bot_please_enter_yn")"
@@ -147,9 +147,9 @@ main() {
     while true; do
         question "$(get_string "install_bot_ufw")"
         NEED_UFW="$REPLY"
-        if [[ "$NEED_PROTECTION" == "y" || "$NEED_PROTECTION" == "Y" ]]; then
+        if [[ "$NEED_UFW" == "y" || "$NEED_UFW" == "Y" ]]; then
             break
-        elif [[ "$NEED_PROTECTION" == "n" || "$NEED_PROTECTION" == "N" ]]; then
+        elif [[ "$NEED_UFW" == "n" || "$NEED_UFW" == "N" ]]; then
             break
         else
             warn "$(get_string "install_bot_please_enter_yn")"
