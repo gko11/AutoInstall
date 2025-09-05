@@ -26,7 +26,7 @@ check_component() {
                         sudo apt-get purge -y vsftpd > /dev/null
                         rm -f "$file"
                         REINSTALL_VSFTPD=true
-			REINSTALL_VSFTPD_INFO = true
+			REINSTALL_VSFTPD_INFO=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_vsftpd")"
