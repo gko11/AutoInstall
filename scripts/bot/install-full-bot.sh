@@ -22,7 +22,7 @@ check_component() {
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_vsftpd")"
-                        sudo apt purge vsftpd
+                        sudo apt purge -y vsftpd
                         rm -f "$file"
                         REINSTALL_VSFTPD=true
                         break
@@ -46,7 +46,7 @@ check_component() {
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_ufw")"
-                        sudo apt purge ufw
+                        sudo apt purge -y ufw
                         rm -f "$file"
                         rm -f "$path"
                         REINSTALL_UFW=true
@@ -305,7 +305,7 @@ main() {
 
     show_panel_info
     
-    read -n 1 -s -r -p "$(get_string "install_full_press_key")"
+    read -n 1 -s -r -p "$(get_string "install_bot_press_key")"
     exit 0
 }
 
