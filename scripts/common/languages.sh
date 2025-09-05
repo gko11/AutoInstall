@@ -97,7 +97,7 @@ LANG_STRINGS["ru_install_bot_password_lowercase"]="Пароль должен с�
 LANG_STRINGS["ru_install_bot_password_number"]="Пароль должен содержать хотя бы одну цифру (0-9)."
 LANG_STRINGS["ru_install_bot_password_special"]="Пароль должен содержать хотя бы один специальный символ (!, @, #, $, %, ^, &, *, -, +, =, ? и т.д.)."
 LANG_STRINGS["ru_install_bot_installing_vsftpd"]="Установка vsftpd..."
-LANG_STRINGS["en_install_bot_vsftpd_success"]="Vsftpd установлен."
+LANG_STRINGS["ru_install_bot_vsftpd_success"]="Vsftpd установлен."
 
 LANG_STRINGS["ru_install_bot_detected_ufw"]="Обнаружена установка ufw"
 LANG_STRINGS["ru_install_bot_reinstall_ufw"]="Переустановить ufw? (y/n):"
