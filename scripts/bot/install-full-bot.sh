@@ -209,7 +209,7 @@ main() {
         fi
     done
 
-     if [ "$NEED_FTP" = "y" ] || ["$REINSTALL_FTP" = true]; then
+     if [ "$NEED_FTP" = "y" ] || [ "$REINSTALL_FTP" = true ]; then
         install_ftp
      fi
 
