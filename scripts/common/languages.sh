@@ -68,6 +68,7 @@ LANG_STRINGS["en_install_bot_reinstall_ufw"]="Reinstall ufw? (y/n):"
 LANG_STRINGS["en_install_bot_stopping_ufw"]="Stopping and removing existing installation..."
 LANG_STRINGS["en_install_bot_reinstall_denied_ufw"]="Ufw reinstallation denied"
 LANG_STRINGS["en_install_bot_ufw"]="Would you like to install Ufw? (y/n)"
+LANG_STRINGS["en_install_bot_ufw_success"]="Ufw installed."
 
 LANG_STRINGS["en_install_bot_detected_solobot"]="Solobot installation detected"
 LANG_STRINGS["en_install_bot_reinstall_solobot"]="Reinstall Solobot? (y/n):"
@@ -104,6 +105,7 @@ LANG_STRINGS["ru_install_bot_reinstall_ufw"]="Переустановить ufw? 
 LANG_STRINGS["ru_install_bot_stopping_ufw"]="Останавливаем и удаляем существующую установку..."
 LANG_STRINGS["ru_install_bot_reinstall_denied_ufw"]="Отказано в переустановке ufw"
 LANG_STRINGS["ru_install_bot_ufw"]="Желаете установить Ufw? (y/n)"
+LANG_STRINGS["ru_install_bot_ufw_success"]="Ufw установлен."
 
 LANG_STRINGS["ru_install_bot_detected_solobot"]="Обнаружена установка Solobot"
 LANG_STRINGS["ru_install_bot_reinstall_solobot"]="Переустановить Solobot? (y/n):"
