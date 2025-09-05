@@ -146,20 +146,21 @@ main() {
         exit 0
     fi
 
-    if ["$REINSTALL_FTP" = false] && command -v vsftpd >/dev/null 2>&1; then
-    while true; do
-        question "$(get_string "install_bot_vsftpd")"
-        NEED_FTP="$REPLY"
-        if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]]; then
-            break
-        elif [[ "$NEED_FTP" == "n" || "$NEED_FTP" == "N" ]]; then
-            break
-        else
-            warn "$(get_string "install_bot_please_enter_yn")"
-        fi
-    done
+    if ["$REINSTALL_FTP" = false] && ! command -v vsftpd >/dev/null 2>&1; then
+    	while true; do
+            question "$(get_string "install_bot_vsftpd")"
+            NEED_FTP="$REPLY"
+            if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]]; then
+                break
+            elif [[ "$NEED_FTP" == "n" || "$NEED_FTP" == "N" ]]; then
+                break
+            else
+                warn "$(get_string "install_bot_please_enter_yn")"
+            fi
+        done
+    fi
 
-    if [ "$NEED_FTP" = "y" ]; then
+    if [ "$NEED_FTP" = "y" || "$NEED_FTP" == "Y" ]; then
 	while true; do
             question "$(get_string "install_bot_enter_vsftpd_login")"
             FTP_LOGIN_USERNAME="$REPLY"
