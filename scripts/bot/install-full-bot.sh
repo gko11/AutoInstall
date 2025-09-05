@@ -109,7 +109,7 @@ install_ftp() {
 	sudo useradd -m -s /bin/bash $FTP_LOGIN_USERNAME
 	sudo chpasswd <<<"$FTP_LOGIN_USERNAME:$FTP_LOGIN_PASSWORD"
 	echo "$FTP_LOGIN_USERNAME" | sudo tee -a /etc/vsftpd.userlist
-	info "$(get_string "install_bot_vsftpd_success")"
+	success "$(get_string "install_bot_vsftpd_success")"
 	
 }
 
@@ -125,7 +125,7 @@ install_ufw() {
 	sudo ufw allow 21
 	sudo ufw allow 8010
 	sudo ufw enable -y
-	info "$(get_string "install_bot_vsftpd_success")"
+	success "$(get_string "install_bot_vsftpd_success")"
 	
 }
 
