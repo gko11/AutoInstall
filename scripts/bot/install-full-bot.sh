@@ -113,6 +113,22 @@ install_ftp() {
 	
 }
 
+install_ufw() {
+	sudo apt install ufw
+	sudo ufw allow 22
+	sudo ufw allow 80
+	sudo ufw allow 443
+	sudo ufw allow 3001
+	sudo ufw allow 3004
+	sudo ufw allow 8443
+	sudo ufw allow 20
+	sudo ufw allow 21
+	sudo ufw allow 8010
+	sudo ufw enable -y
+	info "$(get_string "install_bot_vsftpd_success")"
+	
+}
+
 
 show_panel_info() {
     echo ""
