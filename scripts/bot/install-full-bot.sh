@@ -109,6 +109,7 @@ install_ftp() {
 	sudo useradd -m -s /bin/bash $FTP_LOGIN_USERNAME
 	sudo chpasswd <<<"$FTP_LOGIN_USERNAME:$FTP_LOGIN_PASSWORD"
 	echo "$FTP_LOGIN_USERNAME" | sudo tee -a /etc/vsftpd.userlist
+	info "$(get_string "install_bot_vsftpd_success")"
 	
 }
 
