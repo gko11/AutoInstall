@@ -143,6 +143,42 @@ main() {
             warn "$(get_string "install_bot_please_enter_yn")"
         fi
     done
+    if [ "$NEED_FTP" = "y" ]; then
+	while true; do
+            question "$(get_string "install_bot_enter_vsftpd_login")"
+            FTP_LOGIN_USERNAME="$REPLY"
+            if [[ -n "$FTP_LOGIN_USERNAME" ]]; then
+                break
+            fi
+            warn "$(get_string "install_bot_vsftpd_login_empty")"
+        done       
+
+        while true; do
+            question "$(get_string "install_full_enter_admin_password")"
+            LOGIN_PASSWORD="$REPLY"
+            if [[ ${#LOGIN_PASSWORD} -lt 8 ]]; then
+                warn "$(get_string "install_full_password_short")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [A-Z] ]]; then
+                warn "$(get_string "install_full_password_uppercase")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [a-z] ]]; then
+                warn "$(get_string "install_full_password_lowercase")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [0-9] ]]; then
+                warn "$(get_string "install_full_password_number")"
+                continue
+            fi
+            if ! [[ "$LOGIN_PASSWORD" =~ [^a-zA-Z0-9] ]]; then
+                warn "$(get_string "install_full_password_special")"
+                continue
+            fi
+            break
+        done
+    fi
 
     while true; do
         question "$(get_string "install_bot_ufw")"
