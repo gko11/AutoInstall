@@ -72,7 +72,13 @@ check_component() {
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_solobot")"
-                       
+			warn "$(get_string "install_bot_remove_solobot")"
+			sudo systemctl stop bot.service > /dev/null
+                       	rm -r "$path"
+			sudo systemctl stop caddy  > /dev/null
+			sudo apt-get purge -y caddy > /dev/null
+			sudo systemctl stop postgresql > /dev/null
+			sudo apt purge postgresql postgresql-contrib -y > /dev/null 
                         REINSTALL_BOT=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
