@@ -9,6 +9,7 @@ REINSTALL_VSFTPD_INFO=false
 REINSTALL_UFW=false
 REINSTALL_UFW_INFO=NULL
 REINSTALL_BOT=false
+REINSTALL_BOT_INFO=NULL
 
 check_component() {
     local component=$1
@@ -41,6 +42,7 @@ check_component() {
 		done
 	    else
     		REINSTALL_VSFTPD=true
+                REINSTALL_VSFTPD_INFO=true
             fi
             ;;
         "ufw")
@@ -69,6 +71,7 @@ check_component() {
 		done
 	    else
     		REINSTALL_UFW=true
+		REINSTALL_UFW_INFO=true
             fi
             ;;
 	"solobot")
@@ -88,10 +91,12 @@ check_component() {
 			sudo systemctl stop postgresql > /dev/null
 			sudo apt-get purge postgresql postgresql-contrib -y > /dev/null 
                         REINSTALL_BOT=true
+			REINSTALL_BOT_INFO=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_solobot")"
                         REINSTALL_BOT=false
+			REINSTALL_BOT_INFO=false
                         break
                     else
                         warn "$(get_string "install_bot_please_enter_yn")"
@@ -99,6 +104,7 @@ check_component() {
 		done
 	    else
     		REINSTALL_BOT=true
+		REINSTALL_BOT_INFO=true
             fi
             ;;
 
@@ -241,9 +247,9 @@ main() {
         install_ufw
      fi
 
-    
-    
-
+     if [ "$REINSTALL_BOT" == true ]; then
+        install_ufw
+     fi
 
     success "$(get_string "install_bot_complete")"
 
