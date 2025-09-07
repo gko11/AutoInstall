@@ -187,12 +187,12 @@ install_bot() {
         done
 
 	while true; do
-        	question "$(get_string "install_bot_enter_solobot_domain")"
+        	question "$(get_string "install_bot_enter_solobot_table")"
         	DATABASE_TABLE_NAME="$REPLY"
         	if [[ -n "$DATABASE_TABLE_NAME" ]]; then
         	    break
         	fi
-        	warn "$(get_string "install_full_domain_empty")"
+        	warn "$(get_string "install_full_table_empty")"
     	done		
 }
 

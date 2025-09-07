@@ -80,6 +80,8 @@ LANG_STRINGS["en_install_bot_enter_solobot_domain"]="Enter bot domain (e.g., bot
 LANG_STRINGS["en_install_bot_domain_empty"]="Bot domain cannot be empty. Please enter a value."
 LANG_STRINGS["en_install_bot_enter_database_login"]="Enter PostgresSQL login:"
 LANG_STRINGS["en_install_bot_database_login_empty"]="PostgresSQL login cannot be empty. Please enter a value."
+LANG_STRINGS["en_install_bot_enter_solobot_table"]="Enter database table name:"
+LANG_STRINGS["en_install_bot_table_empty"]="Table name cannot be empty. Please enter a value."
 
 LANG_STRINGS["en_install_bot_press_key"]="Press any key to return to menu..."
 LANG_STRINGS["en_install_bot_please_enter_yn"]="Please enter only 'y' or 'n'"
@@ -121,6 +123,8 @@ LANG_STRINGS["ru_install_bot_enter_solobot_domain"]="Введите домен �
 LANG_STRINGS["ru_install_bot_domain_empty"]="Домен бота не может быть пустым. Пожалуйста, введите значение."
 LANG_STRINGS["ru_install_bot_enter_database_login"]="Введите имя пользователя для PostgresSQL"
 LANG_STRINGS["ru_install_bot_database_login_empty"]="Логин пользователя не может быть пустым. Пожалуйста, введите значение."
+LANG_STRINGS["ru_install_bot_enter_solobot_table"]="Введите имя таблицы базы бота:"
+LANG_STRINGS["ru_install_bot_table_empty"]="Имя таблицы базы не может быть пустым. Пожалуйста, введите значение."
 
 LANG_STRINGS["ru_install_bot_press_key"]="Нажмите любую клавишу для возврата в меню..."
 LANG_STRINGS["ru_install_bot_please_enter_yn"]="Пожалуйста, введите только 'y' или 'n'"
