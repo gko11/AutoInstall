@@ -210,14 +210,10 @@ install_bot() {
 	sudo systemctl restart caddy
 	sudo apt update -y && sudo apt install postgresql postgresql-contrib -y
 	sudo systemctl start postgresql && sudo systemctl enable postgresql
-echo 0
-	sudo -i -u postgres
-	echo 1
-	echo createuser --interactive -n
-echo 2
-	echo createdb $DATABASE_TABLE_NAME --owner=$DATABASE_LOGIN_USERNAME
-echo 3
-	echo psql
+	psql -U postgres
+	createuser --interactive -n
+	createdb $DATABASE_TABLE_NAME --owner=$DATABASE_LOGIN_USERNAME
+	psql
 	echo ALTER USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
 	echo \q
 	exit
