@@ -243,16 +243,13 @@ main() {
         install_ftp
      fi
 
-     echo $NEED_UFW
-        echo $REINSTALL_UFW
-
      if [ "$NEED_UFW" == "y" ] || [ "$REINSTALL_UFW" == true ]; then
         
         install_ufw
      fi
 
      if [ "$REINSTALL_BOT" == true ]; then
-        install_ufw
+ 
      fi
 
     success "$(get_string "install_bot_complete")"
