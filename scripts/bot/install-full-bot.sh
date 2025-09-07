@@ -213,13 +213,13 @@ install_bot() {
 echo 0
 	sudo -i -u postgres
 	echo 1
-	createuser --interactive -n
+	echo createuser --interactive -n
 echo 2
-	createdb $DATABASE_TABLE_NAME --owner=$DATABASE_LOGIN_USERNAME
+	echo createdb $DATABASE_TABLE_NAME --owner=$DATABASE_LOGIN_USERNAME
 echo 3
-	psql
-	ALTER USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
-	\q
+	echo psql
+	echo ALTER USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
+	echo \q
 	exit
 
 }
