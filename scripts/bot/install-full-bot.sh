@@ -219,7 +219,7 @@ main() {
             break
         done
     fi
-    if ([ "$REINSTALL_UFW" == false ] || [ "$REINSTALL_UFW_INFO" == NULL ]); then
+    if (([ "$REINSTALL_UFW" == false ] && [ "$REINSTALL_UFW_INFO" == NULL ]) || [ "$REINSTALL_UFW_INFO" == NULL ]); then
 
         while true; do
             question "$(get_string "install_bot_ufw")"
@@ -237,7 +237,7 @@ main() {
         install_ftp
      fi
 
-     if [ "$NEED_UFW" == "y" ]; then
+     if [ "$NEED_UFW" == "y" ] || [ "$REINSTALL_UFW" == true ]; then
         install_ufw
      fi
 
