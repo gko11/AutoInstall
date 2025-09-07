@@ -34,7 +34,7 @@ check_component() {
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_vsftpd")"
                         REINSTALL_VSFTPD=false
-			REINSTALL_VSFTPD_INFO=true
+			REINSTALL_VSFTPD_INFO=false
                         break
                     else
                         warn "$(get_string "install_bot_please_enter_yn")"
