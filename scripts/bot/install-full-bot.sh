@@ -208,6 +208,16 @@ install_bot() {
   		sed -i "s|my.domen.com|$BOT_DOMAIN|g" /etc/caddy/Caddyfile
 	fi
 	sudo systemctl restart caddy
+	sudo apt update -y && sudo apt install postgresql postgresql-contrib -y
+	sudo systemctl start postgresql && sudo systemctl enable postgresql
+	sudo -i -u postgres
+	createuser --interactive -n
+	createdb $DATABASE_TABLE_NAME --owner=$DATABASE_LOGIN_USERNAME
+	psql
+	ALTER USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
+	\q
+	exit
+	sudo timedatectl set-timezone UTC
 }
 
 
