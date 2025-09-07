@@ -124,7 +124,7 @@ install_ufw() {
 	sudo ufw allow 20
 	sudo ufw allow 21
 	sudo ufw allow 8010
-	sudo ufw enable -y
+	yes | sudo ufw enable
 	success "$(get_string "install_bot_ufw_success")"
 	
 }
