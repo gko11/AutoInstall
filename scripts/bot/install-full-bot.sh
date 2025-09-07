@@ -141,6 +141,18 @@ install_ufw() {
 	
 }
 
+install_bot() {
+	while true; do
+        	question "$(get_string "install_bot_enter_solobot_domain")"
+        	BOT_DOMAIN="$REPLY"
+        	if [[ -n "$BOT_DOMAIN" ]]; then
+        	    break
+        	fi
+        	warn "$(get_string "install_full_domain_empty")"
+    	done		
+}
+
+
 
 show_panel_info() {
     echo ""
@@ -244,12 +256,11 @@ main() {
      fi
 
      if [ "$NEED_UFW" == "y" ] || [ "$REINSTALL_UFW" == true ]; then
-        
         install_ufw
      fi
 
      if [ "$REINSTALL_BOT" == true ] || ([ REINSTALL_BOT_INFO=NULL ] && [ "$REINSTALL_BOT" == false ]); then
- 	echo 1
+ 	install_bot
      fi
 
     success "$(get_string "install_bot_complete")"

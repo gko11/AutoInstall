@@ -76,6 +76,8 @@ LANG_STRINGS["en_install_bot_atention_solobot"]="Attention, the bot will be rein
 LANG_STRINGS["en_install_bot_stopping_solobot"]="Stopping and removing existing installation..."
 LANG_STRINGS["en_install_bot_remove_solobot"]="Remove Solobot, Caddy,PostgresSQL!"
 LANG_STRINGS["en_install_bot_reinstall_denied_solobot"]="Solobot reinstallation denied"
+LANG_STRINGS["en_install_bot_enter_solobot_domain"]="Enter bot domain (e.g., bot.domain.com):"
+LANG_STRINGS["en_install_bot_domain_empty"]="Bot domain cannot be empty. Please enter a value."
 
 LANG_STRINGS["en_install_bot_press_key"]="Press any key to return to menu..."
 LANG_STRINGS["en_install_bot_please_enter_yn"]="Please enter only 'y' or 'n'"
@@ -113,6 +115,8 @@ LANG_STRINGS["ru_install_bot_atention_solobot"]="Внимание, бот буд
 LANG_STRINGS["ru_install_bot_stopping_solobot"]="Останавливаем и удаляем существующую установку..."
 LANG_STRINGS["ru_install_bot_remove_solobot"]="Удаляю Solobot, Caddy,PostgresSQL!"
 LANG_STRINGS["ru_install_bot_reinstall_denied_solobot"]="Отказано в переустановке Solobot"
+LANG_STRINGS["ru_install_bot_enter_solobot_domain"]="Введите домен бота (например, bot.domain.com):"
+LANG_STRINGS["ru_install_bot_domain_empty"]="Домен бота не может быть пустым. Пожалуйста, введите значение."
 
 LANG_STRINGS["ru_install_bot_press_key"]="Нажмите любую клавишу для возврата в меню..."
 LANG_STRINGS["ru_install_bot_please_enter_yn"]="Пожалуйста, введите только 'y' или 'n'"
