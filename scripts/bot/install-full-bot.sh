@@ -219,7 +219,7 @@ main() {
             break
         done
     fi
-    if ([ "$REINSTALL_UFW" = false ] && [ "$REINSTALL_UFW_INFO" == NULL ]); then
+    if ([ "$REINSTALL_UFW" = false ] && [ "$REINSTALL_UFW_INFO" = NULL ]); then
 
         while true; do
             question "$(get_string "install_bot_ufw")"
