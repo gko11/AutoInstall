@@ -248,7 +248,7 @@ main() {
         install_ufw
      fi
 
-     if [ "$REINSTALL_BOT" == true ]; then
+     if [ "$REINSTALL_BOT" == true ] || ([ REINSTALL_BOT_INFO=NULL ] && [ "$REINSTALL_BOT" == false ]); then
  	echo 1
      fi
 
