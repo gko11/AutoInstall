@@ -217,7 +217,7 @@ install_bot() {
 	ALTER USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
 	\q
 	exit
-	sudo timedatectl set-timezone UTC
+
 }
 
 
