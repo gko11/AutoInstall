@@ -249,7 +249,7 @@ main() {
      fi
 
      if [ "$REINSTALL_BOT" == true ]; then
- 
+ 	echo 1
      fi
 
     success "$(get_string "install_bot_complete")"
