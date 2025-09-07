@@ -193,7 +193,15 @@ install_bot() {
         	    break
         	fi
         	warn "$(get_string "install_full_table_empty")"
-    	done		
+    	done	
+
+	sudo apt install -y curl debian-keyring debian-archive-keyring apt-transport-https
+	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+	sudo apt update -y
+	sudo apt install caddy	
+	rm -f /etc/caddy/Caddyfile
+	cp /opt/autoinstall/configs/Caddyfile /etc/caddy/Caddyfile
 }
 
 
