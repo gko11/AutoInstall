@@ -23,6 +23,7 @@ check_component() {
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_vsftpd")"
+			sudo service vsftpd stop > /dev/null
                         sudo apt-get purge -y vsftpd > /dev/null
                         rm -f "$file"
                         REINSTALL_VSFTPD=true
@@ -48,6 +49,7 @@ check_component() {
                     REINSTALL="$REPLY"
                     if [[ "$REINSTALL" == "y" || "$REINSTALL" == "Y" ]]; then
                         warn "$(get_string "install_bot_stopping_ufw")"
+			sudo ufw disable > /dev/null
                         sudo apt-get purge -y ufw > /dev/null
                         rm -f "$file"
                         rm -r "$path"
