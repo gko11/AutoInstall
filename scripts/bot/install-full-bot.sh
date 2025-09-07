@@ -199,13 +199,13 @@ install_bot() {
 	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 	sudo apt update -y
-	sudo apt install caddy	
+	sudo apt install caddy -y	
 	rm -f /etc/caddy/Caddyfile
 	cp /opt/autoinstall/configs/Caddyfile /etc/caddy/Caddyfile
 	if echo "http" | grep -q "$BOT_DOMAIN"; then
-  		sed -i "s|https://my.domen.com|$BOT_DOMAIN|g" .env
+  		sed -i "s|https://my.domen.com|$BOT_DOMAIN|g" /etc/caddy/Caddyfile
 	else
-  		sed -i "s|my.domen.com|$BOT_DOMAIN|g" .env
+  		sed -i "s|my.domen.com|$BOT_DOMAIN|g" /etc/caddy/Caddyfile
 	fi
 	sudo systemctl restart caddy
 }
