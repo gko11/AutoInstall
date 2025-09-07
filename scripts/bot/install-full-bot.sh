@@ -202,6 +202,12 @@ install_bot() {
 	sudo apt install caddy	
 	rm -f /etc/caddy/Caddyfile
 	cp /opt/autoinstall/configs/Caddyfile /etc/caddy/Caddyfile
+	if echo "http" | grep -q "$BOT_DOMAIN"; then
+  		sed -i "s|https://my.domen.com|$BOT_DOMAIN|g" .env
+	else
+  		sed -i "s|my.domen.com|$BOT_DOMAIN|g" .env
+	fi
+	sudo systemctl restart caddy
 }
 
 
