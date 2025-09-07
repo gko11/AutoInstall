@@ -1,0 +1,30 @@
+https://my.domen.com {
+       # Проксирование запросов на вебхук Телеграм
+       reverse_proxy /webhook/* localhost:3001
+
+       # Проксирование запросов на вебхук TBlocker
+       reverse_proxy /tblocker/webhook localhost:3001
+
+       # Проксирование запросов на вебхук Юкасса
+       reverse_proxy /yookassa/webhook localhost:3001
+
+       # Проксирование запросов на вебхук Юмани
+       reverse_proxy /yoomoney/webhook localhost:3001
+
+       # Проксирование запросов на вебхук Робокасса
+       reverse_proxy /robokassa/webhook localhost:3001
+
+       # Проксирование запросов на вебхук Фрикасса
+       reverse_proxy /freekassa/webhook localhost:3001
+
+       # Проксирование запросов на вебхук Криптобот
+       reverse_proxy /cryptobot/webhook localhost:3001
+
+       # Путь подписки в рамках бота, делаем его красивым.
+       reverse_proxy /solonet_sub/* http://localhost:3001
+
+       @has_url query url=*
+       redir @has_url {query.url} 301
+
+       respond / 404 "URL argument is missing."
+}
