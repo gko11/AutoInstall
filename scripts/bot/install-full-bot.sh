@@ -149,6 +149,50 @@ install_bot() {
         	    break
         	fi
         	warn "$(get_string "install_full_domain_empty")"
+    	done
+
+	while true; do
+            question "$(get_string "install_bot_enter_database_login")"
+            DATABASE_LOGIN_USERNAME="$REPLY"
+            if [[ -n "$DATABASE_LOGIN_USERNAME" ]]; then
+                break
+            fi
+            warn "$(get_string "install_bot_database_login_empty")"
+        done       
+
+        while true; do
+            question "$(get_string "install_bot_enter_admin_password")"
+            DATABASE_LOGIN_PASSWORD="$REPLY"
+            if [[ ${#DATABASE_LOGIN_PASSWORD} -lt 8 ]]; then
+                warn "$(get_string "install_bot_password_short")"
+                continue
+            fi
+            if ! [[ "$DATABASE_LOGIN_PASSWORD" =~ [A-Z] ]]; then
+                warn "$(get_string "install_bot_password_uppercase")"
+                continue
+            fi
+            if ! [[ "$DATABASE_LOGIN_PASSWORD" =~ [a-z] ]]; then
+                warn "$(get_string "install_bot_password_lowercase")"
+                continue
+            fi
+            if ! [[ "$DATABASE_LOGIN_PASSWORD" =~ [0-9] ]]; then
+                warn "$(get_string "install_bot_password_number")"
+                continue
+            fi
+            if ! [[ "$DATABASE_LOGIN_PASSWORD" =~ [^a-zA-Z0-9] ]]; then
+                warn "$(get_string "install_bot_password_special")"
+                continue
+            fi
+            break
+        done
+
+	while true; do
+        	question "$(get_string "install_bot_enter_solobot_domain")"
+        	DATABASE_TABLE_NAME="$REPLY"
+        	if [[ -n "$DATABASE_TABLE_NAME" ]]; then
+        	    break
+        	fi
+        	warn "$(get_string "install_full_domain_empty")"
     	done		
 }
 
