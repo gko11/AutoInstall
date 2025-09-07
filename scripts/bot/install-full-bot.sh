@@ -7,6 +7,7 @@ source "/opt/autoinstall/scripts/common/languages.sh"
 REINSTALL_VSFTPD=false
 REINSTALL_VSFTPD_INFO=false
 REINSTALL_UFW=false
+REINSTALL_UFW_INFO=NULL
 REINSTALL_BOT=false
 
 check_component() {
@@ -32,6 +33,7 @@ check_component() {
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_vsftpd")"
                         REINSTALL_VSFTPD=false
+			REINSTALL_VSFTPD_INFO=true
                         break
                     else
                         warn "$(get_string "install_bot_please_enter_yn")"
@@ -54,10 +56,12 @@ check_component() {
                         rm -f "$file"
                         rm -r "$path"
                         REINSTALL_UFW=true
+			REINSTALL_UFW_INFO=true
                         break
                     elif [[ "$REINSTALL" == "n" || "$REINSTALL" == "N" ]]; then
                         info "$(get_string "install_bot_reinstall_denied_ufw")"
                         REINSTALL_UFW=false
+			REINSTALL_UFW_INFO=false
                         break
                     else
                         warn "$(get_string "install_bot_please_enter_yn")"
@@ -215,19 +219,20 @@ main() {
             break
         done
     fi
+    if ([ "$REINSTALL_UFW" = false ] && [ "$REINSTALL_UFW_INFO" == NULL ]); then
 
-    while true; do
-        question "$(get_string "install_bot_ufw")"
-        NEED_UFW="$REPLY"
-        if [[ "$NEED_UFW" == "y" || "$NEED_UFW" == "Y" ]]; then
-            break
-        elif [[ "$NEED_UFW" == "n" || "$NEED_UFW" == "N" ]]; then
-            break
-        else
-            warn "$(get_string "install_bot_please_enter_yn")"
-        fi
-    done
-
+        while true; do
+            question "$(get_string "install_bot_ufw")"
+            NEED_UFW="$REPLY"
+            if [[ "$NEED_UFW" == "y" || "$NEED_UFW" == "Y" ]]; then
+                break
+            elif [[ "$NEED_UFW" == "n" || "$NEED_UFW" == "N" ]]; then
+                break
+            else  
+                warn "$(get_string "install_bot_please_enter_yn")"
+            fi
+        done
+    fi
      if [[ "$NEED_FTP" == "y" || "$NEED_FTP" == "Y" ]] || [ "$REINSTALL_VSFTPD" == true ]; then
         install_ftp
      fi
