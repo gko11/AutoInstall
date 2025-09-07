@@ -210,6 +210,7 @@ install_bot() {
 	sudo systemctl restart caddy
 	sudo apt update -y && sudo apt install postgresql postgresql-contrib -y
 	sudo systemctl start postgresql && sudo systemctl enable postgresql
+echo 0
 	sudo -i -u postgres
 	echo 1
 	createuser --interactive -n
