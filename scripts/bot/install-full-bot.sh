@@ -243,9 +243,11 @@ main() {
         install_ftp
      fi
 
+     echo $NEED_UFW
+        echo $REINSTALL_UFW
+
      if [ "$NEED_UFW" == "y" ] || [ "$REINSTALL_UFW" == true ]; then
-        echo "$NEED_UFW"
-        echo "$REINSTALL_UFW"
+        
         install_ufw
      fi
 
