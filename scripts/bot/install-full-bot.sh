@@ -226,7 +226,7 @@ EOF
 	curl -L https://github.com/Vladless/Solo_bot/archive/refs/heads/main.zip -o SoloBot.zip
 	echo "Extracting files..."
 	echo "Распаковка файлов..."
-	unzip -q autoinstall.zip
+	unzip -q SoloBot.zip
 
 	if [ ! -d "Solo_bot-main" ]; then
 		echo "Error: Failed to extract archive"
