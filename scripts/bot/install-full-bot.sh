@@ -210,16 +210,34 @@ install_bot() {
 	sudo systemctl restart caddy
 	sudo apt update -y
 	sudo apt install -y postgresql postgresql-contrib
-
-# Запуск и автозапуск сервиса
 	sudo systemctl start postgresql
 	sudo systemctl enable postgresql
-
-# Создание пользователя и базы (НЕ через интерактив)
+	# Создание пользователя и базы (НЕ через интерактив)
 sudo -u postgres psql <<-EOF
     CREATE USER $DATABASE_LOGIN_USERNAME WITH PASSWORD '$DATABASE_LOGIN_PASSWORD';
     CREATE DATABASE $DATABASE_TABLE_NAME OWNER $DATABASE_LOGIN_USERNAME;
 EOF
+
+	sudo timedatectl set-timezone UTC
+	cd /opt
+
+	echo "Downloading SoloBot..."
+	echo "Загрузка SoloBot..."
+	curl -L https://github.com/Vladless/Solo_bot/archive/refs/heads/main.zip -o SoloBot.zip
+	echo "Extracting files..."
+	echo "Распаковка файлов..."
+	unzip -q autoinstall.zip
+
+	if [ ! -d "Solo_bot-main" ]; then
+		echo "Error: Failed to extract archive"
+    		echo "Ошибка: Не удалось распаковать архив"
+    		exit 1
+	fi
+	mv /Solo_bot-main /tg_bot
+	
+
+mkdir -p /opt/autoinstall
+
 
 }
 
