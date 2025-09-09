@@ -251,6 +251,9 @@ EOF
 	success "$(get_string "install_bot_complete")"
 	info "$(get_string "install_bot_complete_info_folder")"
 	info "$(get_string "install_bot_complete_info_config")"
+	info "$(get_string "install_bot_complete_info_Database_Name")"
+	info "$(get_string "install_bot_complete_info_Database_Login")"
+	info "$(get_string "install_bot_complete_info_Database_Password")"
 	info "$(get_string "install_bot_complete_info_start")"	
 }
 
