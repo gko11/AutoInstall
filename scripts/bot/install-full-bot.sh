@@ -233,7 +233,7 @@ EOF
     		echo "Ошибка: Не удалось распаковать архив"
     		exit 1
 	fi
-	mv ~/Solo_bot-main ~/tg_bot
+	mv /Solo_bot-main /tg_bot
 	
 
 
