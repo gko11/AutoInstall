@@ -135,9 +135,9 @@ LANG_STRINGS["ru_install_bot_table_empty"]="Имя таблицы базы не 
 LANG_STRINGS["ru_install_bot_complete_SoloBot"]="Релиз SoloBot Установлен!"
 LANG_STRINGS["ru_install_bot_complete_info_folder"]="SoloBot находится в директории: /opt/tg_bot"
 LANG_STRINGS["ru_install_bot_complete_info_config"]="Перед запуском, обязательно загрузите и заполните config.py (В корень папки SoloBot) и text.py (Папка handlers)  в соответствующие места."
-LANG_STRINGS["ru_install_bot_complete_info_Database_Name"]="Имя базы: $DATABASE_TABLE_NAME"
-LANG_STRINGS["ru_install_bot_complete_info_Database_Login"]="Логин пользователя: $DATABASE_LOGIN_USERNAME"
-LANG_STRINGS["ru_install_bot_complete_info_Database_Password"]="Пароль: $DATABASE_LOGIN_PASSWORD"
+LANG_STRINGS["ru_install_bot_complete_info_Database_Name"]="Имя базы: ${DATABASE_TABLE_NAME}"
+LANG_STRINGS["ru_install_bot_complete_info_Database_Login"]="Логин пользователя: ${DATABASE_LOGIN_USERNAME}"
+LANG_STRINGS["ru_install_bot_complete_info_Database_Password"]="Пароль: ${DATABASE_LOGIN_PASSWORD}"
 LANG_STRINGS["ru_install_bot_complete_info_start"]="Для запуска используйте команду: sudo solobot"
 
 LANG_STRINGS["ru_install_bot_press_key"]="Нажмите любую клавишу для возврата в меню..."

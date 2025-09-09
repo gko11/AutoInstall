@@ -251,9 +251,13 @@ EOF
 	success "$(get_string "install_bot_complete_SoloBot")"
 	info "$(get_string "install_bot_complete_info_folder")"
 	info "$(get_string "install_bot_complete_info_config")"
-	info "$(get_string "install_bot_complete_info_Database_Name")"
-	info "$(get_string "install_bot_complete_info_Database_Login")"
-	info "$(get_string "install_bot_complete_info_Database_Password")"
+	echo ""
+    	echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
+	echo -e "${BOLD_CYAN}$(get_string "install_bot_complete_info_Database_Name")${RESET}"
+	echo -e "${BOLD_CYAN}$(get_string "install_bot_complete_info_Database_Login")${RESET}"
+	echo -e "${BOLD_CYAN}$(get_string "install_bot_complete_info_Database_Password")${RESET}"
+	echo -e "${MAGENTA}────────────────────────────────────────────────────────────${RESET}"
+	echo ""
 	info "$(get_string "install_bot_complete_info_start")"	
 }
 
