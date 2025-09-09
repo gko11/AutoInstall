@@ -82,11 +82,15 @@ LANG_STRINGS["en_install_bot_enter_database_login"]="Enter PostgresSQL login:"
 LANG_STRINGS["en_install_bot_database_login_empty"]="PostgresSQL login cannot be empty. Please enter a value."
 LANG_STRINGS["en_install_bot_enter_solobot_table"]="Enter database table name:"
 LANG_STRINGS["en_install_bot_table_empty"]="Table name cannot be empty. Please enter a value."
+LANG_STRINGS["en_install_bot_success"]="Table name cannot be empty. Please enter a value."
+LANG_STRINGS["en_install_bot_complete"]="SoloBot Installed!"
+LANG_STRINGS["en_install_bot_complete_info_folder"]="SoloBot is located in the directory: /opt/tg_bot!"
+LANG_STRINGS["en_install_bot_complete_info_config"]="Before starting, be sure to download and fill out config.py (In the root of the SoloBot folder) and text.py (Handlers folder) in the appropriate places."
+LANG_STRINGS["en_install_bot_complete_info_start"]="To run use the command: sudo solobot"
 
 LANG_STRINGS["en_install_bot_press_key"]="Press any key to return to menu..."
 LANG_STRINGS["en_install_bot_please_enter_yn"]="Please enter only 'y' or 'n'"
 LANG_STRINGS["en_install_bot_no_components"]="No components to install"
-LANG_STRINGS["en_install_bot_complete"]="Installation completed!"
 
 
 
@@ -125,6 +129,10 @@ LANG_STRINGS["ru_install_bot_enter_database_login"]="Введите имя по�
 LANG_STRINGS["ru_install_bot_database_login_empty"]="Логин пользователя не может быть пустым. Пожалуйста, введите значение."
 LANG_STRINGS["ru_install_bot_enter_solobot_table"]="Введите имя таблицы базы бота:"
 LANG_STRINGS["ru_install_bot_table_empty"]="Имя таблицы базы не может быть пустым. Пожалуйста, введите значение."
+LANG_STRINGS["ru_install_bot_complete"]="Релиз SoloBot Установлен!"
+LANG_STRINGS["ru_install_bot_complete_info_folder"]="SoloBot находится в директории: /opt/tg_bot!"
+LANG_STRINGS["ru_install_bot_complete_info_config"]="Перед запуском, обязательно загрузите и заполните config.py (В корень папки SoloBot) и text.py (Папка handlers)  в соответствующие места."
+LANG_STRINGS["ru_install_bot_complete_info_start"]="Для запуска используйте команду: sudo solobot"
 
 LANG_STRINGS["ru_install_bot_press_key"]="Нажмите любую клавишу для возврата в меню..."
 LANG_STRINGS["ru_install_bot_please_enter_yn"]="Пожалуйста, введите только 'y' или 'n'"
