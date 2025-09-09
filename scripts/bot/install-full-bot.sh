@@ -243,7 +243,12 @@ EOF
 	python3.12 -m venv venv
 	source venv/bin/activate
 	pip install -r requirements.txt
-	
+	rm SoloBot.zip
+
+	cp /opt/autoinstall/configs/bot.service /etc/systemd/system/bot.service
+	sudo systemctl daemon-reload && sudo systemctl enable bot.service
+
+	success "$(get_string "install_bot_success")"	
 }
 
 
