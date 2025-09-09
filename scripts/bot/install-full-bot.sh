@@ -235,11 +235,11 @@ EOF
 	fi
 	mv /opt/Solo_bot-main /opt/tg_bot
 	cd /opt/tg_bot
-	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo add-apt-repository ppa:deadsnakes/ppa -y
 	sudo apt update -y
-	sudo apt install python3.12
+	sudo apt install python3.12 -y
 	sudo locale-gen ru_RU.UTF-8
-	sudo apt install python3.12-venv
+	sudo apt install python3.12-venv -y
 	python3.12 -m venv venv
 	source venv/bin/activate
 	pip install -r requirements.txt
