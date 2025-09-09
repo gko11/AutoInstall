@@ -233,10 +233,17 @@ EOF
     		echo "Ошибка: Не удалось распаковать архив"
     		exit 1
 	fi
-	mv /Solo_bot-main /tg_bot
+	mv /opt/Solo_bot-main /opt/tg_bot
+	cd /opt/tg_bot
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt update -y
+	sudo apt install python3.12
+	sudo locale-gen ru_RU.UTF-8
+	sudo apt install python3.12-venv
+	python3.12 -m venv venv
+	source venv/bin/activate
+	pip install -r requirements.txt
 	
-
-
 }
 
 
