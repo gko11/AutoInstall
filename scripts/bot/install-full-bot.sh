@@ -248,7 +248,10 @@ EOF
 	cp /opt/autoinstall/configs/bot.service /etc/systemd/system/bot.service
 	sudo systemctl daemon-reload && sudo systemctl enable bot.service
 
-	success "$(get_string "install_bot_success")"	
+	success "$(get_string "install_bot_complete")"
+	info "$(get_string "install_bot_complete_info_folder")"
+	info "$(get_string "install_bot_complete_info_config")"
+	info "$(get_string "install_bot_complete_info_start")"	
 }
 
 
