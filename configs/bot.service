@@ -1,0 +1,15 @@
+[Unit]
+Description=SoloBot Service
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/opt/tg_bot
+ExecStart=/opt/tg_bot/venv/bin/python /opt/tg_bot/main.py
+ExecStop=/bin/kill -s SIGINT $MAINPID
+Restart=always
+KillMode=control-group
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
